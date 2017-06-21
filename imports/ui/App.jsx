@@ -15,6 +15,7 @@ import Question4 from './questions/question4Gender'
 import Question5 from './questions/question5SeniorChild'
 import Question6 from './questions/question6Employed'
 import Question7 from './questions/question7Veteran'
+import Review from './questions/review'
 
 class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends Component {
           <Link to='/q5'>q5</Link>
           <Link to='/q6'>q6</Link>
           <Link to='/q7'>q7</Link>
+          <Link to='/review'>review</Link>
         </div>
 
         <Route exact path='/' component={Question1}/>
@@ -46,6 +48,7 @@ class App extends Component {
         <Route exact path='/q5' component={Question5}/>
         <Route exact path='/q6' component={Question6}/>
         <Route exact path='/q7' component={Question7}/>
+        <Route exact path='/review' component={Review}/>
       </div>
     </Router>
     );

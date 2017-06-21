@@ -7,6 +7,10 @@ const Question4 = () =>
       <button className="question-button"> Male </button>
       <button className="question-button"> Female </button>
     </div>
+    <div className="next-button-group">
+      <button className="back-button">Back</button>
+      <button className="next-button">Next</button>
+    </div>
   </div>
 
 export default Question4;

@@ -6,6 +6,10 @@ const Question1 = () =>
     <div className="question-button-group">
       <input className="form-control" type="text" />
     </div>
+    <div className="next-button-group">
+      <button className="back-button">Back</button>
+      <button className="next-button">Next</button>
+    </div>
   </div>
 
 export default Question1;

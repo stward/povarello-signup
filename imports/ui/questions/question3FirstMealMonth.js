@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Question3 = () =>
-  <div className="row ">
+  <div className="row">
     <h1>Is this your first meal here this month?</h1>
     <div className="question-button-group">
       <button className="question-button">Yes</button>

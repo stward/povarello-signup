@@ -8,7 +8,17 @@ The public side of the program will be simple question pages: A block with the P
 
 Since the app is running on a tablet, the buttons should be large and easy to press. The users are also going to be homeless and sometimes disabled, so the UI should remain super simple.
 
--What is your gender? (M/F) -Is this your first meal here this year? (Y/N) -Is this your first meal here this month? (skip if they answered no to the previous question) -What age category do you fall under? (under 18, 18 to 54, 55+) -Are you currently employed? (Y/N) -Are you a veteran? (Y/N)
+-What is your gender? (M/F)
+
+-Is this your first meal here this year? (Y/N)
+
+-Is this your first meal here this month? (skip if they answered no to the previous question)
+
+-What age category do you fall under? (under 18, 18 to 54, 55+)
+
+-Are you currently employed? (Y/N)
+
+-Are you a veteran? (Y/N)
 
 (a review page is a possibility at the end here. "look at your info, make sure you got everything right")
 

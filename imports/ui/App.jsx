@@ -1,5 +1,10 @@
 import { createContainer }  from 'meteor/react-meteor-data';
 import React, { Component, PropTypes } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -19,26 +24,30 @@ class App extends Component {
 
   render() {
     return (
+    <Router>
       <div>
         <div className="row main-header">
           <img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/>
         </div>
-        <Question1 />
-        <Question2 />
-        <div className="height30px"></div>
-        <Question3 />
-        <div className="height30px"></div>
-        <Question4 />
-        <div className="height30px"></div>
-        <Question5 />
-        <div className="height30px"></div>
-        <Question6 />
-        <div className="height30px"></div>
-        <Question7 />
-        <div className="row">
-          <button className="submit-button">Submit</button>
+        <div>
+          <Link to='/'>q1</Link>
+          <Link to='/q2'>q2</Link>
+          <Link to='/q3'>q3</Link>
+          <Link to='/q4'>q4</Link>
+          <Link to='/q5'>q5</Link>
+          <Link to='/q6'>q6</Link>
+          <Link to='/q7'>q7</Link>
         </div>
+
+        <Route exact path='/' component={Question1}/>
+        <Route exact path='/q2' component={Question2}/>
+        <Route exact path='/q3' component={Question3}/>
+        <Route exact path='/q4' component={Question4}/>
+        <Route exact path='/q5' component={Question5}/>
+        <Route exact path='/q6' component={Question6}/>
+        <Route exact path='/q7' component={Question7}/>
       </div>
+    </Router>
     );
   }
 }

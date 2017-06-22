@@ -8,6 +8,7 @@ import {
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import Splash from './questions/splash'
 import QuestionContainer from './QuestionContainer'
 import Question1 from './questions/question1Name'
 import Question2 from './questions/question2FirstMealYear'
@@ -27,7 +28,8 @@ class App extends Component {
           <img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/>
         </div>
         <div>
-          <Link to='/'>q1</Link>
+          <Link to='/splash'>splash</Link>
+          <Link to='/questions/1'>q1</Link>
           <Link to='/questions/2'>q2</Link>
           <Link to='/questions/3'>q3</Link>
           <Link to='/questions/4'>q4</Link>
@@ -37,7 +39,7 @@ class App extends Component {
           <Link to='/questions/8'>review</Link>
         </div>
 
-        <Route exact path='/' component={QuestionContainer} />
+        <Route exact path='/' component={Splash} />
         <Route path='/questions/:id' component={QuestionContainer} />
       </div>
     </Router>

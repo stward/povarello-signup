@@ -23,6 +23,18 @@ input[type="text"] {
   max-height: 150px;
 }
 
+.start-button {
+  margin: 60px;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  border-radius: 100px;
+  color: black;
+  box-shadow: 2px 2px gray;
+  padding: 50px 50px;
+  background-color: #5cff59
+}
+
 .question-button-group {
   display: flex;
   justify-content: center;

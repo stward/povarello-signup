@@ -1,13 +1,14 @@
 import React, {Component, PropTypes} from 'react'
-import Question1 from './question1Name'
-import Question2 from './question2FirstMealYear'
-import Question3 from './question3FirstMealMonth'
-import Question4 from './question4Gender'
-import Question5 from './question5SeniorChild'
-import Question6 from './question6Employed'
-import Question7 from './question7Veteran'
-import Review from './review'
+import Question1 from './questions/question1Name'
+import Question2 from './questions/question2FirstMealYear'
+import Question3 from './questions/question3FirstMealMonth'
+import Question4 from './questions/question4Gender'
+import Question5 from './questions/question5SeniorChild'
+import Question6 from './questions/question6Employed'
+import Question7 from './questions/question7Veteran'
+import Review from './questions/review'
 import QuestionTally from './QuestionTally'
+import {People} from '../api/people.js';
 
 const questions = {
   '1': Question1,
@@ -40,9 +41,7 @@ class QuestionContainer extends Component {
     this.setState(newData)
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
+  handleSubmit() {
     People.insert({
       createdAt: new Date(),
       name: this.state.name,
@@ -64,7 +63,7 @@ class QuestionContainer extends Component {
     return (
       <ActiveQuestion
         onChangeHandler={this.onChangeHandler.bind(this)}
-        onSubmit={this.handleSubmit.bind(this)}
+        handleSubmit={this.handleSubmit.bind(this)}
         next={next}
         previous={previous}
         info={this.state}

@@ -8,7 +8,7 @@ import {
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import QuestionContainer from './questions/QuestionContainer'
+import QuestionContainer from './QuestionContainer'
 import Question1 from './questions/question1Name'
 import Question2 from './questions/question2FirstMealYear'
 import Question3 from './questions/question3FirstMealMonth'

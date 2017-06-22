@@ -1,4 +1,18 @@
-__Poverello Sign-in App__
+___Poverello Sign-in App___
+
+If you don't have Meteor:
+`curl https://install.meteor.com/ | sh`
+
+If you don't have Yarn:
+`brew install yarn`
+
+in the project:
+
+-`yarn install`
+
+-`yarn start`
+
+go to localhost:300 to see it.
 
 This is an app that will run on tablets at the Poverello homeless center for people to sign in with. The current system is a mess of paper, and isn't super efficient, so this will help streamline their process.
 

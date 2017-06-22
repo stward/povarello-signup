@@ -11,7 +11,7 @@ const Question5 = (props) =>
     </div>
     <div className="next-button-group">
       <Link to={`/questions/${props.previous}`} className="back-button">Back</Link>
-      <Link to={`/questions/${props.next}`} className="next-button">Next</Link>
+      <Link to={`/questions/${props.next}`} className="next-button">Next</Link>\
     </div>
   </div>
 

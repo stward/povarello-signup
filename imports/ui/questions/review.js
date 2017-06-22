@@ -1,22 +1,23 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
-const Review = () =>
+const Review = (props) =>
   <div className="row">
     <h1>Review your information. Does this all look right?</h1>
     <div>
-        <li>name</li>
-        <li>gender</li>
-        <li>first meal year</li>
-        <li>first meal month</li>
-        <li>age</li>
-        <li>employed</li>
-        <li>veteran</li>
+        <li>{props.info.name}</li>
+        <li>{props.info.gender}</li>
+        <li>{props.info.firstMealYear}</li>
+        <li>{props.info.firstMealMonth}</li>
+        <li>{props.info.seniorChild}</li>
+        <li>{props.info.employed}</li>
+        <li>{props.info.veteran}</li>
     </div>
     <div className="question-button-group">
-      <button className="submit-button">Submit</button>
+      <button className="submit-button" onClick={(event) => props.handleSubmit()}>Submit</button>
     </div>
     <div className="next-button-group">
-      <a className="back-button" href={`/questions/${props.previous}`}>Back</a>
+      <Link to={`/questions/${props.previous}`} className="back-button">Back</Link>
     </div>
   </div>
 

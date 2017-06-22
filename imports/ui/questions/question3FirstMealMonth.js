@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Question3 = (props) =>
   <div className="row">
@@ -8,8 +9,8 @@ const Question3 = (props) =>
       <button className="question-button" value="no" onClick={(event) => props.onChangeHandler("firstMealMonth", event.target.value)}>No</button>
     </div>
     <div className="next-button-group">
-      <a className="back-button" href={`/questions/${props.previous}`}>Back</a>
-      <a className="next-button" href={`/questions/${props.next}`}>Next</a>
+      <Link to={`/questions/${props.previous}`} className="back-button">Back</Link>
+      <Link to={`/questions/${props.next}`} className="next-button">Next</Link>
     </div>
   </div>
 

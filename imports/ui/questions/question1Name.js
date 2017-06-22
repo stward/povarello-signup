@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Question1 = (props) =>
   <div className="row">
@@ -7,7 +8,7 @@ const Question1 = (props) =>
       <input className="form-control" type="text" placeholder="Enter Your Name Here" onChange={(event) => props.onChangeHandler("name", event.target.value)} />
     </div>
     <div className="next-button-group">
-      <a className="next-button" href={`/questions/${props.next}`}>Next</a>
+      <Link to={`/questions/${props.next}`} className="next-button">Next</Link>
     </div>
   </div>
 

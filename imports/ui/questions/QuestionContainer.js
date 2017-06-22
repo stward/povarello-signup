@@ -38,22 +38,21 @@ class QuestionContainer extends Component {
     var newData = {}
     newData[field] = value
     this.setState(newData)
-    console.log(this.state)
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
-    Tasks.insert({
-      text,
-      createdAt: new Date(), // current time
+    People.insert({
+      createdAt: new Date(),
+      name: this.state.name,
+      firstMealYear: this.state.firstMealYear,
+      firstMealMonth: this.state.firstMealMonth,
+      gender: this.state.gender,
+      seniorChild: this.state.seniorChild,
+      employed: this.state.employed,
+      veteran: this.state.veteran
     });
-
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
   render() {
@@ -61,8 +60,15 @@ class QuestionContainer extends Component {
     const next = Number(questionNum) + 1
     const previous = Number(questionNum) - 1
     const ActiveQuestion = questions[questionNum]
+    console.log(this.state)
     return (
-      <ActiveQuestion onChangeHandler={this.onChangeHandler.bind(this)} onSubmit={this.handleSubmit.bind(this)} next={next} previous={previous} />
+      <ActiveQuestion
+        onChangeHandler={this.onChangeHandler.bind(this)}
+        onSubmit={this.handleSubmit.bind(this)}
+        next={next}
+        previous={previous}
+        info={this.state}
+      />
     )
   }
 }

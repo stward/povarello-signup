@@ -13,7 +13,7 @@ const Review = () =>
         <li>veteran</li>
     </div>
     <div className="question-button-group">
-      <button className="question-button">Submit</button>
+      <button className="submit-button">Submit</button>
     </div>
     <div className="next-button-group">
       <a className="back-button" href={`/questions/${props.previous}`}>Back</a>

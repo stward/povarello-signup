@@ -42,24 +42,33 @@ input[type="text"] {
   justify-content: space-between;
 }
 
-.next-button {
+.next-button, .back-button {
   display: flex;
   justify-content: center;
-  background-color: lime;
-  padding: 50px 50px;
   font-size: 40px;
   border-radius: 20px;
   max-width: 200px;
+  color: black;
+  box-shadow: 2px 2px gray;
+  padding: 50px 50px;
+}
+
+.next-button {
+  background-color: lime;
+}
+
+.next-button:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .back-button {
-  display: flex;
-  justify-content: center;
   background-color: red;
-  padding: 50px 50px;
-  font-size: 40px;
-  border-radius: 20px;
-  max-width: 200px;
+}
+
+.back-button:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .submit-button {

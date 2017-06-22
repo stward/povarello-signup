@@ -19,13 +19,6 @@ import Question7 from './questions/question7Veteran'
 import Review from './questions/review'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'test'
-    };
-  }
-
   render() {
     return (
     <Router>
@@ -44,7 +37,7 @@ class App extends Component {
           <Link to='/questions/8'>review</Link>
         </div>
 
-        <Route exact path='/' component={Question1} />
+        <Route exact path='/' component={QuestionContainer} />
         <Route path='/questions/:id' component={QuestionContainer} />
       </div>
     </Router>

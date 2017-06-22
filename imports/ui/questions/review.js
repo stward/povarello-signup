@@ -16,7 +16,7 @@ const Review = () =>
       <button className="question-button">Submit</button>
     </div>
     <div className="next-button-group">
-      <button className="back-button">Back</button>
+      <a className="back-button" href={`/questions/${props.previous}`}>Back</a>
     </div>
   </div>
 

@@ -10,7 +10,7 @@ const Question5 = (props) =>
     </div>
     <div className="next-button-group">
       <a className="back-button" href={`/questions/${props.previous}`}>Back</a>
-      <a className="next-button" href={`/questions/${props.next}`}>Next</a>>
+      <a className="next-button" href={`/questions/${props.next}`}>Next</a>
     </div>
   </div>
 

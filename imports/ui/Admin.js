@@ -5,6 +5,13 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import {People} from '../api/people.js';
 
 class Admin extends Component {
+  deleteHandler(id) {
+    People.remove({
+      _id: id
+    });
+    console.log(this.id)
+  }
+
   renderPeople() {
     let filteredPeople = this.props.people;
     return filteredPeople.map((person) => (
@@ -16,6 +23,11 @@ class Admin extends Component {
         <td>{person.seniorChild}</td>
         <td>{person.employed}</td>
         <td>{person.veteran}</td>
+        <td>
+          <button type="button" className="btn btn-default" onClick={(id) => this.deleteHandler(person._id)}>
+            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+        </td>
       </tr>
     ));
   }
@@ -23,7 +35,7 @@ class Admin extends Component {
   render() {
     return (
       <table className="table table-bordered">
-        <tbody>
+        <thead>
           <tr>
             <th>Name</th>
             <th>First Meal This Year</th>
@@ -32,7 +44,10 @@ class Admin extends Component {
             <th>Age Group</th>
             <th>Employed</th>
             <th>Veteran</th>
+            <th></th>
           </tr>
+        </thead>
+        <tbody>
           {this.renderPeople()}
         </tbody>
       </table>

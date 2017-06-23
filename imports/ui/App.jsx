@@ -28,7 +28,7 @@ class App extends Component {
           <img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/>
         </div>
         <div>
-          <Link to='/splash'>splash</Link>
+          <Link to='/'>splash</Link>
           <Link to='/questions/1'>q1</Link>
           <Link to='/questions/2'>q2</Link>
           <Link to='/questions/3'>q3</Link>

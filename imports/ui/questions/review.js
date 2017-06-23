@@ -6,9 +6,9 @@ const Review = (props) =>
     <h1>Review your information. Does this all look right?</h1>
     <div>
         <li>{props.info.name}</li>
-        <li>{props.info.gender}</li>
         <li>{props.info.firstMealYear}</li>
         <li>{props.info.firstMealMonth}</li>
+        <li>{props.info.gender}</li>
         <li>{props.info.seniorChild}</li>
         <li>{props.info.employed}</li>
         <li>{props.info.veteran}</li>

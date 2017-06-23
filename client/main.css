@@ -81,6 +81,11 @@ input[type="text"] {
   border-radius: 100px
 }
 
+.back-button:hover {
+  text-decoration: none;
+  color: black;
+}
+
 .next-button:hover {
   text-decoration: none;
   color: black;

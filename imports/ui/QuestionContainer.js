@@ -57,7 +57,7 @@ class QuestionContainer extends Component {
   render() {
     const questionNum = (this.props.match.params.id ? this.props.match.params.id : 1)
     const next = Number(questionNum) + 1
-    const previous = Number(questionNum) - 1
+    const previous = (this.state.firstMealYear === "yes" ? Number(questionNum) - 2 : Number(questionNum) - 1)
     const ActiveQuestion = questions[questionNum]
     console.log(this.state)
     return (

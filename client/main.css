@@ -134,6 +134,14 @@ input[type="text"] {
   margin-bottom: 5%;
 }
 
-.height30px {
-  height: 30px;
+.height15px {
+  height: 15px;
+}
+
+.btn {
+  margin-bottom: 15px !important;
+}
+
+.logOutBtn {
+  margin-left: 15px;
 }

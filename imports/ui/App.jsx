@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import {createContainer}  from 'meteor/react-meteor-data'
 import React, {Component, PropTypes} from 'react'
 import {
@@ -25,11 +26,16 @@ import ThankYou from './ThankYou'
 
 class App extends Component {
   render() {
+    if (Cookies.get('loggedIn')) {
+      var adminLink = "/admin"
+    } else {
+      var adminLink = "/password"
+    }
     return (
       <Router>
         <div>
           <div className="row main-header">
-            <Link to="/password"><button className="admin-button"> admin </button></Link>
+            <Link to={adminLink}><button className="admin-button"> admin </button></Link>
             <Link to="/"><img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/></Link>
           </div>
 

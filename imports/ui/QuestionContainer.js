@@ -7,7 +7,6 @@ import Question5 from './questions/question5SeniorChild'
 import Question6 from './questions/question6Employed'
 import Question7 from './questions/question7Veteran'
 import Review from './questions/review'
-import QuestionTally from './QuestionTally'
 import {People} from '../api/people.js';
 
 const questions = {
@@ -56,7 +55,7 @@ class QuestionContainer extends Component {
       veteran: this.state.veteran,
       removed: false
     }),
-    window.location.href = "/thankYou";
+    window.location.href = "/thankYou"
   }
 
   render() {

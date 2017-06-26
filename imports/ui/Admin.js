@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import {createContainer}  from 'meteor/react-meteor-data'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
@@ -10,6 +11,11 @@ class Admin extends Component {
       {_id: id},
       {$set:{removed: true}}
     );
+  }
+
+  logOutHandler() {
+    Cookies.remove("loggedIn")
+    window.location.href = "/"
   }
 
   renderPeople() {
@@ -45,7 +51,7 @@ class Admin extends Component {
       <div>
         <h1>New Registers</h1>
         <a href="/adminArchive" className="btn btn-primary" role="button">Archive</a>
-        <div className="height30px"></div>
+        <button className="btn btn-danger logOutBtn" onClick={() => this.logOutHandler()}>Log Out</button>
         <table className="table table-bordered">
           <thead>
             <tr>

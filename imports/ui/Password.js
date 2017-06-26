@@ -1,15 +1,15 @@
+import Cookies from 'js-cookie'
 import React from 'react'
 import {Link} from 'react-router-dom'
 
 function validatePass(){
-    if(document.getElementById('password').value === 'hotdogs'){
-        alert('correct!')
-        window.location.href = '/admin'
-        return true;
-    }else{
-        alert('wrong password!!');
-        return false;
-    }
+  if(document.getElementById('password').value === 'hotdogs'){
+    Cookies.set('loggedIn', true)
+    window.location.href = '/admin'
+    return true
+  } else {
+    return false
+  }
 }
 
 const Passwordpage = (props) =>

@@ -13,11 +13,11 @@ function validatePass(){
 }
 
 const Passwordpage = (props) =>
-  <div>
+  <form>
     <input className="password-input" placeholder='enter your password here' id='password' type='text'  />
     <div>
-      <button className="password-button" onClick={validatePass}> Submit </button>
+      <button type='submit' className="password-button" onClick={validatePass}> Submit </button>
     </div>
-  </div>
+  </form>
 
 export default Passwordpage;

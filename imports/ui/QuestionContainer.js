@@ -53,7 +53,7 @@ class QuestionContainer extends Component {
       veteran: this.state.veteran,
       removed: false
     }),
-    window.location.href = "/";
+    window.location.href = "/thankYou";
   }
 
   render() {

@@ -74,6 +74,6 @@ class Admin extends Component {
 
 export default createContainer(() => {
   return {
-    people: People.find({removed:true}).fetch()
+    people: People.find({removed:true}, {sort: {createdAt: -1}}).fetch()
   };
 }, Admin);

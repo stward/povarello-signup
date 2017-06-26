@@ -21,6 +21,7 @@ import Review from './questions/review'
 import Admin from './Admin'
 import AdminArchive from './AdminArchive'
 import Passwordpage from './Password'
+import ThankYou from './ThankYou'
 
 class App extends Component {
   render() {
@@ -48,6 +49,7 @@ class App extends Component {
           <Route path='/admin' component={Admin} />
           <Route path='/adminArchive' component={AdminArchive} />
           <Route path='/password' component={Passwordpage} />
+          <Route path='/thankYou' component={ThankYou} />
         </div>
       </Router>
     );

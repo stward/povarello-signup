@@ -48,6 +48,7 @@ class Admin extends Component {
       <div>
         <div className="height30px"></div>
         <a href="/admin" className="btn btn-primary" role="button">Current List</a>
+        <h1>Register Archives</h1>
         <div className="height30px"></div>
         <table className="table table-bordered">
           <thead>

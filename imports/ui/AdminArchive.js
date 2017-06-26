@@ -35,7 +35,9 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        <a href="/admin">Current List</a>
+        <div className="height30px"></div>
+        <a href="/admin" className="btn btn-primary" role="button">Current List</a>
+        <div className="height30px"></div>
         <table className="table table-bordered">
           <thead>
             <tr>

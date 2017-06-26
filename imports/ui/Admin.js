@@ -43,7 +43,9 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        <a href="/adminArchive">Archive</a>
+        <div className="height30px"></div>
+        <a href="/adminArchive" className="btn btn-primary" role="button">Archive</a>
+        <div className="height30px"></div>
         <table className="table table-bordered">
           <thead>
             <tr>

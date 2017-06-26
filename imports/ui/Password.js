@@ -2,7 +2,8 @@ import Cookies from 'js-cookie'
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function validatePass(){
+function validatePass(e){
+  e.preventDefault()
   if(document.getElementById('password').value === 'hotdogs'){
     Cookies.set('loggedIn', true)
     window.location.href = '/admin'

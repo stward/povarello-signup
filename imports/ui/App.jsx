@@ -30,7 +30,7 @@ class App extends Component {
         <div>
           <div className="row main-header">
             <Link to="/password"><button className="admin-button"> admin </button></Link>
-            <img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/>
+            <Link to="/"><img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/></Link>
           </div>
 
           <Route exact path='/' component={Splash} />

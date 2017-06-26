@@ -14,9 +14,9 @@ function validatePass(){
 
 const Passwordpage = (props) =>
   <div>
-    <input placeholder='enter your password here' id='password' type='text'  />
+    <input className="password-input" placeholder='enter your password here' id='password' type='text'  />
     <div>
-      <button className="pass-button" onClick={validatePass}> the password is hotdogs </button>
+      <button className="password-button" onClick={validatePass}> Submit </button>
     </div>
   </div>
 

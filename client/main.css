@@ -32,6 +32,18 @@ input[type="text"] {
   border-radius: 20px;
 }
 
+.password-input {
+  margin: 20px;
+}
+
+.password-button {
+  margin: 20px;
+  padding: 30px;
+  background-color: beige;
+  color: black;
+  border-radius: 50px;
+}
+
 .start-button {
   margin: 60px;
   display: flex;

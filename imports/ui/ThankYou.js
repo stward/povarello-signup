@@ -9,6 +9,8 @@ class ThankYou extends Component {
       <div>
         <div className="height30px"></div>
         <h1>Thank You for Registering!</h1>
+        <hr/>
+        <h3>Returning to start in a few seconds...</h3>
         <script type="text/javascript">
           window.onload = function() {
             setTimeout(function(){

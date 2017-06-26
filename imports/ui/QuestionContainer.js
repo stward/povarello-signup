@@ -50,8 +50,10 @@ class QuestionContainer extends Component {
       gender: this.state.gender,
       seniorChild: this.state.seniorChild,
       employed: this.state.employed,
-      veteran: this.state.veteran
-    });
+      veteran: this.state.veteran,
+      removed: false
+    }),
+    window.location.href = "/";
   }
 
   render() {

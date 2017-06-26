@@ -1,4 +1,4 @@
-import {createContainer}  from 'meteor/react-meteor-data'
+import { createContainer }  from 'meteor/react-meteor-data'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -8,22 +8,14 @@ class Admin extends Component {
   deleteHandler(id) {
     People.update(
       {_id: id},
-      {$set:{removed: true}}
+      {$set:{removed: false}}
     );
   }
 
   renderPeople() {
-    let filteredPeople = this.props.people
-    for (i in filteredPeople) {
-      date = filteredPeople[i].createdAt
-      year = date.getFullYear();
-      month = date.getMonth()+1;
-      dt = date.getDate();
-      filteredPeople[i].createdAt = month + '/' + dt + '/' + year
-    }
+    let filteredPeople = this.props.people;
     return filteredPeople.map((person) => (
       <tr>
-        <td>{person.createdAt.toString()}</td>
         <td>{person.name}</td>
         <td>{person.firstMealYear}</td>
         <td>{person.firstMealMonth}</td>
@@ -43,11 +35,10 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        <a href="/adminArchive">Archive</a>
+        <a href="/admin">Current List</a>
         <table className="table table-bordered">
           <thead>
             <tr>
-              <th>Registered</th>
               <th>Name</th>
               <th>First Meal This Year</th>
               <th>First Meal This Month</th>
@@ -69,6 +60,6 @@ class Admin extends Component {
 
 export default createContainer(() => {
   return {
-    people: People.find({removed:false}, {sort: {createdAt: -1}}).fetch()
+    people: People.find({removed:true}).fetch()
   };
 }, Admin);

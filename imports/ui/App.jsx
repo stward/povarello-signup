@@ -19,6 +19,7 @@ import Question6 from './questions/question6Employed'
 import Question7 from './questions/question7Veteran'
 import Review from './questions/review'
 import Admin from './Admin'
+import AdminArchive from './AdminArchive'
 import Passwordpage from './Password'
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
           <Route exact path='/' component={Splash} />
           <Route path='/questions/:id' component={QuestionContainer} />
           <Route path='/admin' component={Admin} />
+          <Route path='/adminArchive' component={AdminArchive} />
           <Route path='/password' component={Passwordpage} />
         </div>
       </Router>

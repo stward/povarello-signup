@@ -64,7 +64,6 @@ class QuestionContainer extends Component {
     const next = Number(questionNum) + 1
     const previous = (this.state.firstMealYear === "yes" ? Number(questionNum) - 2 : Number(questionNum) - 1)
     const ActiveQuestion = questions[questionNum]
-    console.log(this.state)
     return (
       <ActiveQuestion
         onChangeHandler={this.onChangeHandler.bind(this)}

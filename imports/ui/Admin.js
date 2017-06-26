@@ -57,7 +57,7 @@ class Admin extends Component {
               <th>Age Group</th>
               <th>Employed</th>
               <th>Veteran</th>
-              <th></th>
+              <th>Move To Archive</th>
             </tr>
           </thead>
           <tbody>

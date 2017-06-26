@@ -5,10 +5,16 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import {People} from '../api/people.js';
 
 class Admin extends Component {
-  deleteHandler(id) {
+  addHandler(id) {
     People.update(
       {_id: id},
       {$set:{removed: false}}
+    );
+  }
+
+  removeHandler(id) {
+    People.remove(
+      {_id: id}
     );
   }
 
@@ -24,7 +30,12 @@ class Admin extends Component {
         <td>{person.employed}</td>
         <td>{person.veteran}</td>
         <td>
-          <button type="button" className="btn btn-default" onClick={(id) => this.deleteHandler(person._id)}>
+          <button type="button" className="btn btn-default" onClick={(id) => this.addHandler(person._id)}>
+            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </button>
+        </td>
+        <td>
+          <button type="button" className="btn btn-default" onClick={(id) => this.removeHandler(person._id)}>
             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </button>
         </td>
@@ -48,7 +59,8 @@ class Admin extends Component {
               <th>Age Group</th>
               <th>Employed</th>
               <th>Veteran</th>
-              <th></th>
+              <th>Move Back To Current List</th>
+              <th>Remove Permanently</th>
             </tr>
           </thead>
           <tbody>

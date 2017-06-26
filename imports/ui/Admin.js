@@ -47,31 +47,37 @@ class Admin extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>New Registers</h1>
-        <a href="/adminArchive" className="btn btn-primary" role="button">Archive</a>
-        <button className="btn btn-danger logOutBtn" onClick={() => this.logOutHandler()}>Log Out</button>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Registered</th>
-              <th>Name</th>
-              <th>First Meal This Year</th>
-              <th>First Meal This Month</th>
-              <th>Gender</th>
-              <th>Age Group</th>
-              <th>Employed</th>
-              <th>Veteran</th>
-              <th>Move To Archive</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderPeople()}
-          </tbody>
-        </table>
-      </div>
-    )
+    if (Cookies.get('loggedIn')) {
+      return (
+        <div>
+          <h1>New Registers</h1>
+          <a href="/adminArchive" className="btn btn-primary" role="button">Archive</a>
+          <button className="btn btn-danger logOutBtn" onClick={() => this.logOutHandler()}>Log Out</button>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Registered</th>
+                <th>Name</th>
+                <th>First Meal This Year</th>
+                <th>First Meal This Month</th>
+                <th>Gender</th>
+                <th>Age Group</th>
+                <th>Employed</th>
+                <th>Veteran</th>
+                <th>Move To Archive</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderPeople()}
+            </tbody>
+          </table>
+        </div>
+      )
+    } else {
+      return (
+        window.location.href = "/password"
+      )
+    }
   }
 }
 

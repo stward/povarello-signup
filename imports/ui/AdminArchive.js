@@ -25,28 +25,34 @@ class Admin extends Component {
   }
 
   renderPeople() {
-    let filteredPeople = this.props.people;
-    return filteredPeople.map((person) => (
-      <tr>
-        <td>{person.name}</td>
-        <td>{person.firstMealYear}</td>
-        <td>{person.firstMealMonth}</td>
-        <td>{person.gender}</td>
-        <td>{person.seniorChild}</td>
-        <td>{person.employed}</td>
-        <td>{person.veteran}</td>
-        <td>
-          <button type="button" className="btn btn-default" onClick={(id) => this.addHandler(person._id)}>
-            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
-          </button>
-        </td>
-        <td>
-          <button type="button" className="btn btn-default" onClick={(id) => this.removeHandler(person._id)}>
-            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          </button>
-        </td>
-      </tr>
-    ));
+    if (Cookies.get('loggedIn')) {
+      let filteredPeople = this.props.people;
+      return filteredPeople.map((person) => (
+        <tr>
+          <td>{person.name}</td>
+          <td>{person.firstMealYear}</td>
+          <td>{person.firstMealMonth}</td>
+          <td>{person.gender}</td>
+          <td>{person.seniorChild}</td>
+          <td>{person.employed}</td>
+          <td>{person.veteran}</td>
+          <td>
+            <button type="button" className="btn btn-default" onClick={(id) => this.addHandler(person._id)}>
+              <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+          </td>
+          <td>
+            <button type="button" className="btn btn-default" onClick={(id) => this.removeHandler(person._id)}>
+              <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+          </td>
+        </tr>
+      ));
+    } else {
+      return (
+        window.location.href = "/password"
+      )
+    }
   }
 
   render() {

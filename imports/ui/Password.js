@@ -9,6 +9,7 @@ function validatePass(e){
     window.location.href = '/admin'
     return true
   } else {
+    alert('Incorrect Password')
     return false
   }
 }

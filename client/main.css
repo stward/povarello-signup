@@ -23,6 +23,15 @@ input[type="text"] {
   max-height: 150px;
 }
 
+.admin-button {
+  display: flex;
+  align-content: flex-start;
+  margin-left: 20px;
+  background-color: beige;
+  color: black;
+  border-radius: 20px;
+}
+
 .start-button {
   margin: 60px;
   display: flex;
@@ -94,6 +103,17 @@ input[type="text"] {
 .submit-button {
   font-size: 50px;
   padding: 80px 0px;
+  display: block;
+  width: 100%;
+  background-color: cyan;
+  border-radius: 100px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.pass-button {
+  font-size: 50px;
+  padding: 20px 0px;
   display: block;
   width: 100%;
   background-color: cyan;

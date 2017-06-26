@@ -29,19 +29,8 @@ class App extends Component {
       <Router>
         <div>
           <div className="row main-header">
+            <Link to="/password"><button className="admin-button"> admin </button></Link>
             <img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/>
-          </div>
-          <div>
-            <Link to='/'> splash </Link>
-            <Link to='/questions/1'> q1 </Link>
-            <Link to='/questions/2'> q2 </Link>
-            <Link to='/questions/3'> q3 </Link>
-            <Link to='/questions/4'> q4 </Link>
-            <Link to='/questions/5'> q5 </Link>
-            <Link to='/questions/6'> q6 </Link>
-            <Link to='/questions/7'> q7 </Link>
-            <Link to='/questions/8'> review </Link>
-            <Link to='/password'> admin </Link>
           </div>
 
           <Route exact path='/' component={Splash} />

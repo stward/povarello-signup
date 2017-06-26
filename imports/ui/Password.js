@@ -16,7 +16,7 @@ const Passwordpage = (props) =>
   <div>
     <input placeholder='enter your password here' id='password' type='text'  />
     <div>
-      <button onClick={validatePass}> the password is hotdogs </button>
+      <button className="pass-button" onClick={validatePass}> the password is hotdogs </button>
     </div>
   </div>
 

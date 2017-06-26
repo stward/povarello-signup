@@ -38,8 +38,6 @@ class QuestionContainer extends Component {
   onChangeHandler(field, value) {
     var newData = {}
     newData[field] = value
-    console.log(field)
-    console.log(value)
     if (field === "firstMealYear" && value === "yes") {
       newData["firstMealMonth"] = "no"
     }

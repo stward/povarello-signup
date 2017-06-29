@@ -35,7 +35,6 @@ class App extends Component {
       <Router>
         <div>
           <div className="row main-header">
-            <Link to={adminLink}><button className="admin-button"> admin </button></Link>
             <Link to="/"><img className="header-image" src="http://www.thepoverellocenter.org/wp-content/themes/poverello/library/images/poverello-logo.png"/></Link>
           </div>
 

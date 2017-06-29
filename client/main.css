@@ -6,8 +6,10 @@ html, body {
 
 input[type="text"] {
   width: 50%;
-  padding: 30px;
-  border: solid black 5px
+  padding: 40px;
+  border: solid black 5px;
+  margin: 4%;
+  font-size: 150%;
 }
 
 .main-header {
@@ -15,7 +17,8 @@ input[type="text"] {
   color: white;
   border-radius: 20px;
   padding-top: 3%;
-  padding-bottom: 3%;
+  padding-bottom: 1%;
+  margin-bottom: 5%;
 }
 
 .header-image {
@@ -44,12 +47,20 @@ input[type="text"] {
   border-radius: 50px;
 }
 
-.start-button {
-  margin: 60px;
+.welcome-label {
+  font-size: 60px;
+}
+
+.start-button-container {
   display: flex;
   justify-content: center;
-  font-size: 40px;
-  border-radius: 100px;
+}
+
+.start-button {
+  margin: 60px;
+  max-width: 400px;
+  font-size: 80px;
+  border-radius: 50px;
   color: black;
   box-shadow: 2px 2px gray;
   padding: 50px 50px;
@@ -58,7 +69,7 @@ input[type="text"] {
 
 .question-button-group {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding-bottom: 40px;
 }
 
@@ -81,7 +92,7 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   font-size: 40px;
-  border-radius: 100px;
+  border-radius: 50px;
   max-width: 200px;
   color: black;
   box-shadow: 2px 2px gray;
@@ -99,7 +110,7 @@ input[type="text"] {
 
 .back-button {
   background-color: #ff5151;
-  border-radius: 100px
+  border-radius: 50px;
 }
 
 .back-button:hover {

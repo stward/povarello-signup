@@ -9,17 +9,12 @@ const Question2 = (props) =>
   <div className="row">
     <h1>Is this your first meal here this year?</h1>
     <div className="question-button-group">
-<<<<<<< HEAD
       {props.info.editingQuestion === true ?
         <Link to={`/questions/8`}><button className="question-button" value="yes" onClick={(event) => props.onChangeHandler("firstMealYear", event.target.value)}>Yes</button></Link>
       : <Link to={`/questions/4`}><button className="question-button" value="yes" onClick={(event) => props.onChangeHandler("firstMealYear", event.target.value)}>Yes</button></Link>}
       {props.info.editingQuestion === true ?
         <Link to={`/questions/8`}><button className="question-button" value="no" onClick={(event) => props.onChangeHandler("firstMealYear", event.target.value)}>No</button></Link>
       : <Link to={`/questions/${props.next}`}><button className="question-button" value="no" onClick={(event) => props.onChangeHandler("firstMealYear", event.target.value)}>No</button></Link>}
-=======
-      <Link to={`/questions/4`}><RaisedButton className="question-button" value="yes" onClick={(event) => props.onChangeHandler("firstMealYear", event.target.value)}>Yes</RaisedButton></Link>
-      <Link to={`/questions/${props.next}`}><RaisedButton className="question-button" value="no" onClick={(event) => props.onChangeHandler("firstMealYear", event.target.value)}>No</RaisedButton></Link>
->>>>>>> 3670aa35ec030047c890e6b30ab89228c296b652
     </div>
     <div className="next-button-group">
       <MuiThemeProvider muiTheme={getMuiTheme()}>

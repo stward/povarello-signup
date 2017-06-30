@@ -4,11 +4,7 @@ const Question1 = (props) =>
   <div className="row">
     <h1>Please enter your name</h1>
     <div className="question-button-group">
-<<<<<<< HEAD
       <input className="form-control" type="text" onChange={(event) => props.onChangeHandler("name", event.target.value)} />
-=======
-      <input className="form-control" type="text" placeholder="Enter Your Name Here" />
->>>>>>> d6d243f243068d9884fb57b04da9cf143fd9e7c6
     </div>
     <div className="next-button-group">
       <a className="next-button" href={`/questions/${props.next}`}>Next</a>

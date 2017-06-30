@@ -30,7 +30,8 @@ class QuestionContainer extends Component {
       gender: null,
       seniorChild: null,
       employed: null,
-      veteran: null
+      veteran: null,
+      editingQuestion: false
     }
   }
 
@@ -43,6 +44,10 @@ class QuestionContainer extends Component {
     this.setState(newData)
   }
 
+  editQuestion() {
+      this.setState({editingQuestion: true})
+    }
+
   handleSubmit() {
     People.insert({
       createdAt: new Date(),
@@ -53,7 +58,7 @@ class QuestionContainer extends Component {
       seniorChild: this.state.seniorChild,
       employed: this.state.employed,
       veteran: this.state.veteran,
-      removed: false
+      removed: false,
     }),
     window.location.href = "/thankYou"
   }
@@ -67,6 +72,7 @@ class QuestionContainer extends Component {
       <ActiveQuestion
         onChangeHandler={this.onChangeHandler.bind(this)}
         handleSubmit={this.handleSubmit.bind(this)}
+        editQuestion={this.editQuestion.bind(this)}
         next={next}
         previous={previous}
         info={this.state}

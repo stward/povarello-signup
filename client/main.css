@@ -37,14 +37,16 @@ input[type="text"] {
 
 .password-input {
   margin: 20px;
+  font-size: 200%
 }
 
 .password-button {
   margin: 20px;
   padding: 30px;
-  background-color: beige;
+  background-color: #5cff59;
   color: black;
-  border-radius: 50px;
+  border-radius: 20px;
+  font-size: 150%;
 }
 
 .welcome-label {
@@ -56,26 +58,14 @@ input[type="text"] {
   justify-content: center;
 }
 
-.start-button {
-  margin: 60px;
-  max-width: 400px;
-  font-size: 80px;
-  border-radius: 50px;
-  color: black;
-  box-shadow: 2px 2px gray;
-  padding: 50px 50px;
-  background-color: #5cff59
-}
-
 .question-button-group {
   display: flex;
   justify-content: space-around;
   padding-bottom: 40px;
+  margin: 2%;
 }
 
 .question-button {
-  display: flex;
-  justify-content: center;
   background-color: beige;
   padding: 100px 100px;
   font-size: 50px;
@@ -89,8 +79,6 @@ input[type="text"] {
 }
 
 .next-button, .back-button {
-  display: flex;
-  justify-content: center;
   font-size: 40px;
   border-radius: 50px;
   max-width: 200px;

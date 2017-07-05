@@ -1,6 +1,9 @@
 const NextButtonStyle = {
-  fontSize: 50,
+  display: 'flex',
+  justifyContent: 'center',
+  fontSize: 60,
   padding: 50,
+  maxWidth: 230,
   background: '#ff5151',
   borderRadius: 20,
   border: 'solid white 5px',

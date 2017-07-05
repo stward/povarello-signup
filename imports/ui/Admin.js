@@ -222,7 +222,7 @@ class Admin extends Component {
               {this.renderPeople()}
             </tbody>
           </table>
-          <a id="download" className="btn" onClick={this.downloadCSV({ filename: "people-data.csv" })}>Export</a>
+          <a id="download" className="btn btn-lg btn-primary" onClick={this.downloadCSV({ filename: "people-data.csv" })}>Export</a>
         </div>
       )
     } else {

@@ -1,9 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import RaisedButton from 'material-ui/RaisedButton'
 import NextButtonStyle from '../NextButtonStyle'
+
+const nextStyle = {
+  fontSize: 50,
+  padding: 50,
+  background: '#5cff59',
+  borderRadius: 20,
+  border: 'solid white 5px',
+  color: 'black'
+}
 
 const Question1 = (props) =>{
 console.log(props)
@@ -16,10 +22,9 @@ return (
     <div className="next-button-group">
       {props.info.editingQuestion === true ?
         <div>
-          <Link to={`/questions/8`} className="next-button">submit</Link>
-          <Link to={`/questions/8`} className="next-button">Back</Link>
+          <Link to={`/questions/8`} style={NextButtonStyle}>Back</Link>
         </div>
-      : <Link to={`/questions/${props.next}`} className="next-button">Next</Link>}
+      : <Link to={`/questions/${props.next}`} style={nextStyle}>Next</Link>}
     </div>
   </div>
 )}

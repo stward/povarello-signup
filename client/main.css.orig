@@ -69,18 +69,15 @@ input[type="text"] {
 
 .back-button {
   background-color: red;
-<<<<<<< HEAD
 }
 
 .back-button:hover {
   text-decoration: none;
   color: black;
-=======
   padding: 50px 50px;
   font-size: 40px;
   border-radius: 100px;
   max-width: 200px;
->>>>>>> d6d243f243068d9884fb57b04da9cf143fd9e7c6
 }
 
 .submit-button {

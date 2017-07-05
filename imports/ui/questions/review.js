@@ -5,17 +5,28 @@ import NextButtonStyle from '../NextButtonStyle'
 const submitStyle = {
   margin: 40,
   fontSize: 90,
-  padding: 80,
+  padding: 60,
   background: '#5cff59',
   borderRadius: 20,
   border: 'solid white 5px',
   color: 'black',
-  width: '100%'
+  width: '60%'
+}
+
+const backStyle = {
+  margin: 40,
+  fontSize: 90,
+  padding: 60,
+  background: '#ff5151',
+  borderRadius: 20,
+  border: 'solid white 5px',
+  color: 'black',
+  width: '40%'
 }
 
 const Review = (props) => {
 return (
-  <div className="row">
+  <div className="review-row">
     <h1>Review your information. Does this all look right?</h1>
     <hr />
     <div>
@@ -35,11 +46,12 @@ return (
         </div>
       </div>
     </div>
-    <div className="question-button-group">
+    <div className="review-button-group">
+      <Link to={`/questions/${props.previous}`} style={backStyle}>Back</Link>
       <button style={submitStyle} onClick={(event) => props.handleSubmit()}>Submit</button>
     </div>
     <div className="next-button-group">
-      <Link to={`/questions/${props.previous}`} style={NextButtonStyle}>Back</Link>
+
     </div>
   </div>
 )

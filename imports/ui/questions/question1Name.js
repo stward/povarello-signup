@@ -22,7 +22,7 @@ return (
     <div className="next-button-group">
       {props.info.editingQuestion === true ?
         <div>
-          <Link to={`/questions/8`} style={NextButtonStyle}>Back</Link>
+          <Link to={`/questions/8`} style={nextStyle}>Return to Review</Link>
         </div>
       : <Link to={`/questions/${props.next}`} style={nextStyle}>Next</Link>}
     </div>

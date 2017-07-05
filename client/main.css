@@ -143,3 +143,18 @@ input[type="text"] {
 .logOutBtn {
   margin-left: 15px;
 }
+
+.infoFlexbox{
+  display: flex;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.validAnswer{
+  color: green;
+  padding-left: 1%;
+}
+
+.invalidAnswer{
+  color: red;
+}

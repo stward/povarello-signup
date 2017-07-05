@@ -2,17 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import NextButtonStyle from '../NextButtonStyle'
 
-const backStyle = {
-  margin: 40,
-  fontSize: 90,
-  padding: 60,
-  background: '#ff5151',
-  borderRadius: 20,
-  border: 'solid white 5px',
-  color: 'black',
-  width: '40%'
-}
-
 const Review = (props) => {
 return (
   <div className="review-row">

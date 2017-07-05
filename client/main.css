@@ -145,6 +145,14 @@ input[type="text"] {
   height: 15px;
 }
 
+.width25pct {
+  width: 25%;
+}
+
+.centerDiv {
+  margin: 0 auto;
+}
+
 .btn {
   margin-bottom: 15px !important;
 }
@@ -184,12 +192,12 @@ input[type="text"] {
 .submitStyle {
   margin: 4%;
   font-size: 90px;
-  padding: 10%;
+  padding: 5%;
   background: #5cff59;
   border-radius: 20px;
   border: solid white 5px;
   color: black;
-  width: 60%;
+  width: 70%;
 	-webkit-animation: pulse 1s linear infinite;
 	animation: pulse 1s linear infinite;
 }

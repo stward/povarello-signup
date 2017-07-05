@@ -88,6 +88,7 @@ class Admin extends Component {
       return filteredPeople.createdAt > 2015;
     }
     var startDate = new Date(year, startMonth, '00')
+    var endDate = new Date(year, endMonth, '31')
     console.log(startDate)
     var bobName = filteredPeople.find(findBob)
     this.setState({people: [{

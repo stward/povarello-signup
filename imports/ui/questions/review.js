@@ -1,5 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import NextButtonStyle from '../NextButtonStyle'
+
+const submitStyle = {
+  margin: 40,
+  fontSize: 90,
+  padding: 80,
+  background: '#5cff59',
+  borderRadius: 20,
+  border: 'solid white 5px',
+  color: 'black',
+  width: '100%'
+}
 
 const Review = (props) => {
 return (
@@ -16,10 +28,10 @@ return (
         <p><b>Are you a veteran:</b> {props.info.veteran} <Link to={`/questions/7`}><button onClick={() => props.editQuestion()}>[Edit]</button></Link></p>
     </div>
     <div className="question-button-group">
-      <button className="submit-button" onClick={(event) => props.handleSubmit()}>Submit</button>
+      <button style={submitStyle} onClick={(event) => props.handleSubmit()}>Submit</button>
     </div>
     <div className="next-button-group">
-      <Link to={`/questions/${props.previous}`} className="back-button">Back</Link>
+      <Link to={`/questions/${props.previous}`} style={NextButtonStyle}>Back</Link>
     </div>
   </div>
 )

@@ -29,6 +29,7 @@ class Admin extends Component {
       let filteredPeople = this.props.people;
       return filteredPeople.map((person) => (
         <tr>
+          <td>{person.createdAt.toDateString()}</td>
           <td>{person.name}</td>
           <td>{person.firstMealYear}</td>
           <td>{person.firstMealMonth}</td>
@@ -64,6 +65,7 @@ class Admin extends Component {
         <table className="table table-bordered">
           <thead>
             <tr>
+              <th>Registered</th>
               <th>Name</th>
               <th>First Meal This Year</th>
               <th>First Meal This Month</th>

@@ -39,7 +39,7 @@ class QuestionContainer extends Component {
     var newData = {}
     newData[field] = value
     if (field === "firstMealYear" && value === "yes") {
-      newData["firstMealMonth"] = "no"
+      newData["firstMealMonth"] = "yes"
     }
     this.setState(newData)
   }

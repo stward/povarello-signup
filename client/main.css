@@ -110,6 +110,15 @@ input[type="text"] {
   color: black;
 }
 
+.review-row {
+  font-size: 30px;
+}
+
+.review-button-group {
+  display: flex;
+  justify-content: space-around;
+}
+
 .submit-button {
   font-size: 50px;
   padding: 80px 0px;

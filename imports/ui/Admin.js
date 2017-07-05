@@ -80,23 +80,21 @@ class Admin extends Component {
   showSelections = (e) => {
     e.preventDefault()
     var year = ($("#yearSelect").val())
-    var startMonth = ($("#monthStartSelect").val())
-    var endMonth = ($("#monthEndSelect").val())
-    var startDate = new Date(year, startMonth, 0)
-    var endDate = new Date(year, endMonth, 32)
+    , startMonth = ($("#monthStartSelect").val())
+    , endMonth = ($("#monthEndSelect").val())
+    , startDate = new Date(year, startMonth, 0)
+    , endDate = new Date(year, endMonth, 32)
     function findPeople(filteredPeople) {
       var people = []
       for (i in filteredPeople) {
         if (filteredPeople[i].createdAt > startDate && filteredPeople[i].createdAt < endDate) {
-          console.log("createdAt: " + filteredPeople[i].createdAt)
           people.push(filteredPeople[i])
         }
       }
       return people
     }
-    var bobName = findPeople(this.props.people)
-    console.log(bobName)
-    this.setState({people: bobName})
+    var foundPeople = findPeople(this.props.people)
+    this.setState({people: foundPeople})
   }
 
   renderPeople() {

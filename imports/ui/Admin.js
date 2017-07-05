@@ -83,7 +83,7 @@ class Admin extends Component {
     var startMonth = ($("#monthStartSelect").val())
     var endMonth = ($("#monthEndSelect").val())
     var startDate = new Date(year, startMonth, 0)
-    var endDate = new Date(year, endMonth, 31)
+    var endDate = new Date(year, endMonth, 32)
     function findPeople(filteredPeople) {
       var people = []
       for (i in filteredPeople) {
@@ -120,7 +120,7 @@ class Admin extends Component {
         </tr>
       ))
     } else {
-      var filteredPeople = this.props.people
+      let filteredPeople = this.props.people
       return filteredPeople.map((person) => (
         <tr>
           <td>{person.createdAt.toDateString()}</td>
@@ -141,6 +141,15 @@ class Admin extends Component {
     }
   }
 
+  nextMonthLoader = (event) => {
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    var monthEndSelections = []
+    for (var i = event.target.value; i < months.length; i++) {
+      monthEndSelections.push("<option value=" + i + ">" + months[i] + "</>")
+    }
+    $("#monthEndSelect").html(monthEndSelections)
+  }
+
   render() {
     if (Cookies.get('loggedIn')) {
       return (
@@ -148,10 +157,10 @@ class Admin extends Component {
           <h1>New Registers</h1>
           <a href="/adminArchive" className="btn btn-primary" role="button">Archive</a>
           <button className="btn btn-danger logOutBtn" onClick={() => this.logOutHandler()}>Log Out</button>
-          <form onSubmit={this.showSelections}>
+          <form onSubmit={this.showSelections} className="width25pct centerDiv">
             <div className="form-group">
               <label htmlFor="yearSelect">Year</label>
-              <select id="yearSelect" required>
+              <select id="yearSelect" className="form-control" required>
                 <option value="">- Select -</option>
                 <option value="2017">2017</option>
                 <option value="2016">2016</option>
@@ -161,7 +170,7 @@ class Admin extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="monthStartSelect">Starting Month</label>
-              <select id="monthStartSelect" required>
+              <select id="monthStartSelect" className="form-control" required onChange={this.nextMonthLoader}>
                 <option value="">- Select -</option>
                 <option value="0">January</option>
                 <option value="1">February</option>
@@ -179,20 +188,20 @@ class Admin extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="monthEndSelect">Ending Month</label>
-              <select id="monthEndSelect" required>
-                <option value="">- Select -</option>
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
+              <select id="monthEndSelect" className="form-control" required>
+              <option value="">- Select -</option>
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
               </select>
             </div>
             <button type="submit" id="searchResults" className="btn btn-default">Submit</button>
@@ -215,7 +224,7 @@ class Admin extends Component {
               {this.renderPeople()}
             </tbody>
           </table>
-          <a id='download' onClick={this.downloadCSV({ filename: "people-data.csv" })}>Export</a>
+          <a id="download" className="btn" onClick={this.downloadCSV({ filename: "people-data.csv" })}>Export</a>
         </div>
       )
     } else {

@@ -136,6 +136,14 @@ input[type="text"] {
   height: 15px;
 }
 
+.width25pct {
+  width: 25%;
+}
+
+.centerDiv {
+  margin: 0 auto;
+}
+
 .btn {
   margin-bottom: 15px !important;
 }

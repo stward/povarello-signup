@@ -159,11 +159,37 @@ input[type="text"] {
   text-align: left;
 }
 
-.validAnswer{
+.validAnswer {
   color: green;
   padding-left: 1%;
 }
 
-.invalidAnswer{
+.invalidAnswer {
   color: red;
+}
+
+
+@keyframes pulse {
+   0% {
+   transform: scale(1, 1);
+  }
+   50% {
+   transform: scale(1.1, 1.1);
+  }
+   100% {
+  transform: scale(1, 1);
+  }
+}
+
+.submitStyle {
+  margin: 4%;
+  font-size: 90px;
+  padding: 10%;
+  background: #5cff59;
+  border-radius: 20px;
+  border: solid white 5px;
+  color: black;
+  width: 60%;
+	-webkit-animation: pulse 1s linear infinite;
+	animation: pulse 1s linear infinite;
 }

@@ -2,17 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import NextButtonStyle from '../NextButtonStyle'
 
-const submitStyle = {
-  margin: 40,
-  fontSize: 90,
-  padding: 60,
-  background: '#5cff59',
-  borderRadius: 20,
-  border: 'solid white 5px',
-  color: 'black',
-  width: '60%'
-}
-
 const backStyle = {
   margin: 40,
   fontSize: 90,
@@ -47,8 +36,7 @@ return (
       </div>
     </div>
     <div className="review-button-group">
-      <Link to={`/questions/${props.previous}`} style={backStyle}>Back</Link>
-      <button style={submitStyle} onClick={(event) => props.handleSubmit()}>Submit</button>
+      <button className="submitStyle" onClick={(event) => props.handleSubmit()}>Submit</button>
     </div>
     <div className="next-button-group">
 

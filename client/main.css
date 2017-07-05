@@ -190,9 +190,9 @@ input[type="text"] {
 }
 
 .submitStyle {
-  margin: 4%;
-  font-size: 90px;
-  padding: 5%;
+  margin-top: 3%;
+  font-size: 80px;
+  padding: 2%;
   background: #5cff59;
   border-radius: 20px;
   border: solid white 5px;

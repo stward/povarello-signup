@@ -21,6 +21,7 @@ import Question7 from './questions/question7Veteran'
 import Review from './questions/review'
 import Admin from './Admin'
 import AdminArchive from './AdminArchive'
+import AdminDailyReport from './AdminDailyReport'
 import Passwordpage from './Password'
 import ThankYou from './ThankYou'
 
@@ -42,6 +43,7 @@ class App extends Component {
           <Route path='/questions/:id' component={QuestionContainer} />
           <Route path='/admin' component={Admin} />
           <Route path='/adminArchive' component={AdminArchive} />
+          <Route path='/adminDailyReport' component={AdminDailyReport} />
           <Route path='/password' component={Passwordpage} />
           <Route path='/thankYou' component={ThankYou} />
         </div>

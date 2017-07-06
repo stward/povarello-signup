@@ -15,6 +15,56 @@ const convertArrayOfObjectsToCSV = (args) => {
     return null;
   }
 
+  data = data.filter(function(d) {
+    d.archived = d.removed
+    delete d._id
+    delete d.removed
+    return data
+  })
+  console.log("data: " + JSON.stringify(data[0]))
+
+  columnDelimiter = args.columnDelimiter || ',';
+  lineDelimiter = args.lineDelimiter || '\n';
+
+  keys = Object.keys(data[0]);
+
+  result = '';
+  result += keys.join(columnDelimiter);
+  result += lineDelimiter;
+
+  data.forEach(function(item) {
+    ctr = 0;
+    keys.forEach(function(key) {
+      if (ctr > 0) result += columnDelimiter;
+
+      result += item[key];
+      ctr++;
+    });
+    result += lineDelimiter;
+  });
+
+  return result;
+}
+
+const convertDailyReportToCSV = (args) => {
+  var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+  data = args.data || null;
+
+  if (data == null || !data.length) {
+    return null;
+  }
+
+  for (var i = 0; i < data.length; i++) {
+
+  }
+  data = data.filter(function(d) {
+    delete d._id
+    delete d.removed
+    return data
+  })
+  console.log("data: " + JSON.stringify(data[0]))
+
   columnDelimiter = args.columnDelimiter || ',';
   lineDelimiter = args.lineDelimiter || '\n';
 
@@ -60,9 +110,15 @@ class Admin extends Component {
 
   downloadCSV(args) {
     var data, filename, link;
-    var csv = convertArrayOfObjectsToCSV({
-      data: this.state.people
-    });
+    if (this.state.people.length > 0) {
+      var csv = convertArrayOfObjectsToCSV({
+        data: this.state.people
+      })
+    } else {
+      var csv = convertArrayOfObjectsToCSV({
+        data: this.props.people
+      })
+    }
     if (csv == null) return;
 
     filename = args.filename || 'export.csv';
@@ -153,8 +209,9 @@ class Admin extends Component {
       return (
         <div>
           <h1>New Registers</h1>
-          <a href="/adminArchive" className="btn btn-primary" role="button">Archive</a>
-          <button className="btn btn-danger logOutBtn" onClick={() => this.logOutHandler()}>Log Out</button>
+          <a href="/adminDailyReport" className="btn btn-primary" role="button">Daily Report</a>
+          <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
+          <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
           <form onSubmit={this.showSelections} className="width25pct centerDiv">
             <div className="form-group">
               <label htmlFor="yearSelect">Year</label>

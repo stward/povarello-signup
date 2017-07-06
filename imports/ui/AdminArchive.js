@@ -60,8 +60,9 @@ class Admin extends Component {
     return (
       <div>
         <h1>Register Archives</h1>
-        <a href="/admin" className="btn btn-primary" role="button">Current List</a>
-        <button className="btn btn-danger logOutBtn" onClick={() => this.logOutHandler()}>Log Out</button>
+        <a href="/adminDailyReport" className="btn btn-primary" role="button">Daily Report</a>
+        <a href="/admin" className="btn btn-primary marginLeftBtn" role="button">Current List</a>
+        <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
         <table className="table table-bordered">
           <thead>
             <tr>

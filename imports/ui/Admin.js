@@ -46,48 +46,6 @@ const convertArrayOfObjectsToCSV = (args) => {
   return result;
 }
 
-const convertDailyReportToCSV = (args) => {
-  var result, ctr, keys, columnDelimiter, lineDelimiter, data;
-
-  data = args.data || null;
-
-  if (data == null || !data.length) {
-    return null;
-  }
-
-  for (var i = 0; i < data.length; i++) {
-
-  }
-  data = data.filter(function(d) {
-    delete d._id
-    delete d.removed
-    return data
-  })
-  console.log("data: " + JSON.stringify(data[0]))
-
-  columnDelimiter = args.columnDelimiter || ',';
-  lineDelimiter = args.lineDelimiter || '\n';
-
-  keys = Object.keys(data[0]);
-
-  result = '';
-  result += keys.join(columnDelimiter);
-  result += lineDelimiter;
-
-  data.forEach(function(item) {
-    ctr = 0;
-    keys.forEach(function(key) {
-      if (ctr > 0) result += columnDelimiter;
-
-      result += item[key];
-      ctr++;
-    });
-    result += lineDelimiter;
-  });
-
-  return result;
-}
-
 class Admin extends Component {
   constructor(props) {
     super(props)
@@ -206,6 +164,7 @@ class Admin extends Component {
 
   render() {
     if (Cookies.get('loggedIn')) {
+      console.log(this.state.people)
       return (
         <div>
           <h1>New Registers</h1>

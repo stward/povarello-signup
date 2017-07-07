@@ -288,7 +288,7 @@ class AdminDailyReport extends Component {
             </tr>
           </tbody>
         </table>
-        <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: peopleData, filename: "Poverello Daily Report: " + today + ".csv" })}>Export</a>
+        <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: peopleData, filename: "Poverello Daily Report - " + today + ".csv" })}>Export</a>
       </div>
     )
   }

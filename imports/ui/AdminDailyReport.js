@@ -15,14 +15,6 @@ const convertArrayOfObjectsToCSV = (args) => {
     return null;
   }
 
-  data = data.filter(function(d) {
-    d.archived = d.removed
-    delete d._id
-    delete d.removed
-    return data
-  })
-  console.log("data: " + JSON.stringify(data[0]))
-
   columnDelimiter = args.columnDelimiter || ',';
   lineDelimiter = args.lineDelimiter || '\n';
 
@@ -50,7 +42,7 @@ class AdminDailyReport extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      people: this.props.people
+      people: props.people
     }
   }
 
@@ -61,15 +53,11 @@ class AdminDailyReport extends Component {
 
   downloadCSV(args) {
     var data, filename, link;
-    if (this.state.people.length > 0) {
-      var csv = convertArrayOfObjectsToCSV({
-        data: this.state.people
-      })
-    } else {
-      var csv = convertArrayOfObjectsToCSV({
-        data: this.props.people
-      })
-    }
+
+    var csv = convertArrayOfObjectsToCSV({
+      data: args.data
+    })
+
     if (csv == null) return;
 
     filename = args.filename || 'export.csv';
@@ -84,144 +72,6 @@ class AdminDailyReport extends Component {
     link.setAttribute('download', filename);
   }
 
-  makePeople = () => {
-    let date1 = new Date()
-    let date2 = new Date(2017,5,26)
-    let date3 = new Date(date2)
-    date1.setHours(0,0,0,0)
-    date2.setHours(0,0,0,0)
-    date3.setDate(date3.getDate() + 1);
-    let p = this.props.people
-    console.log("date1: " + date1)
-    console.log("date2: " + date2)
-    console.log("date3: " + date3)
-    p = p.filter(function(person) {
-      person.createdAt.setHours(0,0,0,0)
-      return person.createdAt >= date2 && person.createdAt < date3
-    })
-
-    let male = {total:0, senior:0, adult:0, child:0, employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
-    , maleSenior = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
-    , maleAdult = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
-    , maleChild = {firstMealYear:0, firstMealMonth:0}
-
-    let female = {total:0, senior:0, adult:0, child:0, employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
-    , femaleSenior = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
-    , femaleAdult = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
-    , femaleChild = {firstMealYear:0, firstMealMonth:0}
-
-    for (i in p) {
-      if (p[i].gender === "male") {
-        male.total += 1
-        if (p[i].seniorChild === "senior") {
-          male.senior += 1
-          if (p[i].employed === "yes") {
-            maleSenior.employed += 1
-          }
-          if (p[i].veteran === "yes") {
-            maleSenior.veteran += 1
-          }
-          if (p[i].firstMealYear === "yes") {
-            maleSenior.firstMealYear += 1
-          }
-          if (p[i].firstMealMonth === "yes") {
-            maleSenior.firstMealMonth += 1
-          }
-        } else if (p[i].seniorChild === "adult") {
-          male.adult += 1
-          if (p[i].employed === "yes") {
-            maleAdult.employed += 1
-          }
-          if (p[i].veteran === "yes") {
-            maleAdult.veteran += 1
-          }
-          if (p[i].firstMealYear === "yes") {
-            maleAdult.firstMealYear += 1
-          }
-          if (p[i].firstMealMonth === "yes") {
-            maleAdult.firstMealMonth += 1
-          }
-        } else if (p[i].seniorChild === "child") {
-          male.child += 1
-          if (p[i].firstMealYear === "yes") {
-            maleChild.firstMealYear += 1
-          }
-          if (p[i].firstMealMonth === "yes") {
-            maleChild.firstMealMonth += 1
-          }
-        }
-        if (p[i].employed === "yes") {
-          male.employed += 1
-        }
-        if (p[i].veteran === "yes") {
-          male.veteran += 1
-        }
-        if (p[i].firstMealYear === "yes") {
-          male.firstMealYear += 1
-        }
-        if (p[i].firstMealMonth === "yes") {
-          male.firstMealMonth += 1
-        }
-      } else if (p[i].gender === "female") {
-        female.total += 1
-        if (p[i].seniorChild === "senior") {
-          female.senior += 1
-          if (p[i].employed === "yes") {
-            femaleSenior.employed += 1
-          }
-          if (p[i].veteran === "yes") {
-            femaleSenior.veteran += 1
-          }
-          if (p[i].firstMealYear === "yes") {
-            femaleSenior.firstMealYear += 1
-          }
-          if (p[i].firstMealMonth === "yes") {
-            femaleSenior.firstMealMonth += 1
-          }
-        } else if (p[i].seniorChild === "adult") {
-          female.adult += 1
-          if (p[i].employed === "yes") {
-            femaleAdult.employed += 1
-          }
-          if (p[i].veteran === "yes") {
-            femaleAdult.veteran += 1
-          }
-          if (p[i].firstMealYear === "yes") {
-            femaleAdult.firstMealYear += 1
-          }
-          if (p[i].firstMealMonth === "yes") {
-            femaleAdult.firstMealMonth += 1
-          }
-        } else if (p[i].seniorChild === "child") {
-          female.child += 1
-          if (p[i].firstMealYear === "yes") {
-            femaleChild.firstMealYear += 1
-          }
-          if (p[i].firstMealMonth === "yes") {
-            femaleChild.firstMealMonth += 1
-          }
-        }
-        if (p[i].employed === "yes") {
-          female.employed += 1
-        }
-        if (p[i].veteran === "yes") {
-          female.veteran += 1
-        }
-        if (p[i].firstMealYear === "yes") {
-          female.firstMealYear += 1
-        }
-        if (p[i].firstMealMonth === "yes") {
-          female.firstMealMonth += 1
-        }
-      }
-      console.log(i)
-      console.log(p.length)
-      if (i = p.length) {
-        return female
-      }
-    }
-  }
-
   renderPeople() {
     let date1 = new Date()
     let date2 = new Date(2017,5,26)
@@ -230,9 +80,9 @@ class AdminDailyReport extends Component {
     date2.setHours(0,0,0,0)
     date3.setDate(date3.getDate() + 1);
     let p = this.props.people
-    console.log("date1: " + date1)
-    console.log("date2: " + date2)
-    console.log("date3: " + date3)
+    // console.log("date1: " + date1)
+    // console.log("date2: " + date2)
+    // console.log("date3: " + date3)
     p = p.filter(function(person) {
       person.createdAt.setHours(0,0,0,0)
       return person.createdAt >= date2 && person.createdAt < date3
@@ -353,6 +203,16 @@ class AdminDailyReport extends Component {
         }
       }
     }
+
+    let today = new Date(2017,5,26).toDateString()
+
+    let peopleData = [
+      {"":"Total", Male:male.total, Female:female.total, "Male Senior":male.senior, "Female Senior":female.senior, "Male Adult":male.adult, "Female Adult":female.adult, "Male Child":male.child, "Female Child":female.child},
+      {"":"Employed", Male:male.employed, Female:female.employed, "Male Senior":maleSenior.employed, "Female Senior":femaleSenior.employed, "Male Adult":maleAdult.employed, "Female Adult":femaleAdult.employed, "Male Child":"--", "Female Child":"--"},
+      {"":"Veteran", Male:male.veteran, Female:female.veteran, "Male Senior":maleSenior.veteran, "Female Senior":femaleSenior.veteran, "Male Adult":maleAdult.veteran, "Female Adult":femaleAdult.veteran, "Male Child":"--", "Female Child":"--"},
+      {"":"1st Meal This Year", Male:male.firstMealYear, Female:female.firstMealYear, "Male Senior":maleSenior.firstMealYear, "Female Senior":femaleSenior.firstMealYear, "Male Adult":maleAdult.firstMealYear, "Female Adult":femaleAdult.firstMealYear, "Male Child":maleChild.firstMealYear, "Female Child":femaleChild.firstMealYear},
+      {"":"1st Meal This Month", Male:male.firstMealMonth, Female:female.firstMealMonth, "Male Senior":maleSenior.firstMealMonth, "Female Senior":femaleSenior.firstMealMonth, "Male Adult":maleAdult.firstMealMonth, "Female Adult":femaleAdult.firstMealMonth, "Male Child":maleChild.firstMealMonth, "Female Child":femaleChild.firstMealMonth}
+    ]
 
     return (
       <div id="table_wrapper">
@@ -428,6 +288,7 @@ class AdminDailyReport extends Component {
             </tr>
           </tbody>
         </table>
+        <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: peopleData, filename: "Poverello Daily Report: " + today + ".csv" })}>Export</a>
       </div>
     )
   }
@@ -443,7 +304,6 @@ class AdminDailyReport extends Component {
           <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
           {this.renderPeople()}
-          <button onClick={() => this.exportReport()} className="btn btn-lg btn-primary">Export</button>
         </div>
       )
     } else {

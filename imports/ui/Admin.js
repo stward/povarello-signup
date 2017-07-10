@@ -21,7 +21,6 @@ const convertArrayOfObjectsToCSV = (args) => {
     delete d.removed
     return data
   })
-  console.log("data: " + JSON.stringify(data[0]))
 
   columnDelimiter = args.columnDelimiter || ',';
   lineDelimiter = args.lineDelimiter || '\n';
@@ -96,8 +95,8 @@ class Admin extends Component {
     var year = ($("#yearSelect").val())
     , startMonth = ($("#monthStartSelect").val())
     , endMonth = ($("#monthEndSelect").val())
-    , startDate = new Date(year, startMonth, 0)
-    , endDate = new Date(year, endMonth, 32)
+    , startDate = new Date(year, startMonth, 1)
+    , endDate = new Date(year, endMonth, 31)
     function findPeople(filteredPeople) {
       var people = []
       for (i in filteredPeople) {
@@ -164,7 +163,6 @@ class Admin extends Component {
 
   render() {
     if (Cookies.get('loggedIn')) {
-      console.log(this.state.people)
       return (
         <div>
           <h1>New Registers</h1>

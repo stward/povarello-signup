@@ -74,7 +74,7 @@ class AdminDailyReport extends Component {
 
   renderPeople() {
     let date1 = new Date()
-    let date2 = new Date(2017,5,26)
+    let date2 = new Date(2017,5,23)
     let date3 = new Date(date2)
     date1.setHours(0,0,0,0)
     date2.setHours(0,0,0,0)
@@ -204,7 +204,7 @@ class AdminDailyReport extends Component {
       }
     }
 
-    let today = new Date(2017,5,26).toDateString()
+    let today = new Date(2017,5,23).toDateString()
 
     let peopleData = [
       {"":"Total", Male:male.total, Female:female.total, "Male Senior":male.senior, "Female Senior":female.senior, "Male Adult":male.adult, "Female Adult":female.adult, "Male Child":male.child, "Female Child":female.child},
@@ -295,7 +295,7 @@ class AdminDailyReport extends Component {
 
   render() {
     if (Cookies.get('loggedIn')) {
-      var today = new Date(2017,5,26).toDateString()
+      var today = new Date(2017,5,23).toDateString()
       return (
         <div>
           <h1>Daily Report</h1>

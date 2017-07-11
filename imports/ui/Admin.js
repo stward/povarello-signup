@@ -1,9 +1,10 @@
 import Cookies from 'js-cookie'
 import {createContainer}  from 'meteor/react-meteor-data'
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {People} from '../api/people.js'
+import Person from './Person.js';
 import $ from 'jquery'
 
 const convertArrayOfObjectsToCSV = (args) => {
@@ -48,16 +49,7 @@ const convertArrayOfObjectsToCSV = (args) => {
 class Admin extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      people: this.props.people
-    }
-  }
-
-  deleteHandler(id) {
-    People.update(
-      {_id: id},
-      {$set:{removed: true}}
-    );
+    this.state = {}
   }
 
   logOutHandler() {
@@ -66,16 +58,16 @@ class Admin extends Component {
   }
 
   downloadCSV(args) {
-    var data, filename, link;
-    if (this.state.people.length > 0) {
-      var csv = convertArrayOfObjectsToCSV({
-        data: this.state.people
-      })
-    } else {
-      var csv = convertArrayOfObjectsToCSV({
-        data: this.props.people
-      })
+    var data, filename, link
+
+    let filteredPeople = this.props.people
+    if (this.state.filter) {
+      filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
     }
+
+    var csv = convertArrayOfObjectsToCSV({
+      data: filteredPeople
+    })
     if (csv == null) return;
 
     filename = args.filename || 'export.csv';
@@ -97,59 +89,17 @@ class Admin extends Component {
     , endMonth = ($("#monthEndSelect").val())
     , startDate = new Date(year, startMonth, 1)
     , endDate = new Date(year, endMonth, 31)
-    function findPeople(filteredPeople) {
-      var people = []
-      for (i in filteredPeople) {
-        if (filteredPeople[i].createdAt > startDate && filteredPeople[i].createdAt < endDate) {
-          people.push(filteredPeople[i])
-        }
-      }
-      return people
-    }
-    var foundPeople = findPeople(this.props.people)
-    this.setState({people: foundPeople})
+    this.setState({filter: [startDate, endDate]})
   }
 
   renderPeople() {
-    if (this.state.people.length > 0) {
-      let filteredPeople = this.state.people
-      return filteredPeople.map((person) => (
-        <tr>
-          <td>{person.createdAt.toDateString()}</td>
-          <td>{person.name}</td>
-          <td>{person.firstMealYear}</td>
-          <td>{person.firstMealMonth}</td>
-          <td>{person.gender}</td>
-          <td>{person.seniorChild}</td>
-          <td>{person.employed}</td>
-          <td>{person.veteran}</td>
-          <td>
-            <button type="button" className="btn btn-default" onClick={(id) => this.deleteHandler(person._id)}>
-              <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
-          </td>
-        </tr>
-      ))
-    } else {
-      let filteredPeople = this.props.people
-      return filteredPeople.map((person) => (
-        <tr>
-          <td>{person.createdAt.toDateString()}</td>
-          <td>{person.name}</td>
-          <td>{person.firstMealYear}</td>
-          <td>{person.firstMealMonth}</td>
-          <td>{person.gender}</td>
-          <td>{person.seniorChild}</td>
-          <td>{person.employed}</td>
-          <td>{person.veteran}</td>
-          <td>
-            <button type="button" className="btn btn-default" onClick={(id) => this.deleteHandler(person._id)}>
-              <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
-          </td>
-        </tr>
-      ))
+    let filteredPeople = this.props.people
+    if (this.state.filter) {
+      filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
     }
+    return filteredPeople.map((person) => (
+      <Person key={person._id} id={person._id} person={person} />
+    ));
   }
 
   nextMonthLoader = (event) => {
@@ -169,7 +119,7 @@ class Admin extends Component {
           <a href="/adminDailyReport" className="btn btn-primary" role="button">Daily Report</a>
           <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
-          <form onSubmit={this.showSelections} className="width25pct centerDiv">
+          <form onSubmit={this.showSelections.bind(this)} className="width25pct centerDiv">
             <div className="form-group">
               <label htmlFor="yearSelect">Year</label>
               <select id="yearSelect" className="form-control" required>
@@ -246,6 +196,10 @@ class Admin extends Component {
     }
   }
 }
+
+Admin.propTypes = {
+  people: PropTypes.array.isRequired
+};
 
 export default createContainer(() => {
   return {

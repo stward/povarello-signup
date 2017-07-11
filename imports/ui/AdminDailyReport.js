@@ -41,9 +41,7 @@ const convertArrayOfObjectsToCSV = (args) => {
 class AdminDailyReport extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      people: props.people
-    }
+    this.state = {}
   }
 
   logOutHandler() {

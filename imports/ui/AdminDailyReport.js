@@ -2,6 +2,9 @@ import Cookies from 'js-cookie'
 import {createContainer}  from 'meteor/react-meteor-data'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import 'react-datepicker/dist/react-datepicker.css'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {People} from '../api/people.js'
 import $ from 'jquery'
@@ -41,7 +44,15 @@ const convertArrayOfObjectsToCSV = (args) => {
 class AdminDailyReport extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      today: moment()
+    }
+  }
+
+  handleChange(date) {
+    this.setState({
+      today: date
+    });
   }
 
   logOutHandler() {
@@ -71,21 +82,15 @@ class AdminDailyReport extends Component {
   }
 
   renderPeople() {
-    let date1 = new Date()
-    let date2 = new Date(2017,5,23)
-    let date3 = new Date(date2)
-    date1.setHours(0,0,0,0)
-    date2.setHours(0,0,0,0)
-    date3.setDate(date3.getDate() + 1);
+    let today = this.state.today._d
+    today.setHours(0,0,0,0)
+    let tomorrow = new Date(this.state.today)
+    tomorrow.setDate(tomorrow.getDate() + 1);
     let p = this.props.people
-    // console.log("date1: " + date1)
-    // console.log("date2: " + date2)
-    // console.log("date3: " + date3)
     p = p.filter(function(person) {
       person.createdAt.setHours(0,0,0,0)
-      return person.createdAt >= date2 && person.createdAt < date3
+      return person.createdAt >= today && person.createdAt < tomorrow
     })
-
     let male = {total:0, senior:0, adult:0, child:0, employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
     , maleSenior = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
     , maleAdult = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
@@ -202,8 +207,6 @@ class AdminDailyReport extends Component {
       }
     }
 
-    let today = new Date(2017,5,23).toDateString()
-
     let peopleData = [
       {"":"Total", Male:male.total, Female:female.total, "Male Senior":male.senior, "Female Senior":female.senior, "Male Adult":male.adult, "Female Adult":female.adult, "Male Child":male.child, "Female Child":female.child},
       {"":"Employed", Male:male.employed, Female:female.employed, "Male Senior":maleSenior.employed, "Female Senior":femaleSenior.employed, "Male Adult":maleAdult.employed, "Female Adult":femaleAdult.employed, "Male Child":"--", "Female Child":"--"},
@@ -286,18 +289,21 @@ class AdminDailyReport extends Component {
             </tr>
           </tbody>
         </table>
-        <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: peopleData, filename: "Poverello Daily Report - " + today + ".csv" })}>Export</a>
+        <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: peopleData, filename: "Poverello Daily Report - " + this.state.today + ".csv" })}>Export</a>
       </div>
     )
   }
 
   render() {
     if (Cookies.get('loggedIn')) {
-      var today = new Date(2017,5,23).toDateString()
       return (
         <div>
           <h1>Daily Report</h1>
-          <h2>{today}</h2>
+          <DatePicker className="datePicker"
+            selected={this.state.today}
+            onChange={this.handleChange.bind(this)}
+          />
+          <div className="height15px"></div>
           <a href="/admin" className="btn btn-primary" role="button">Current List</a>
           <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>

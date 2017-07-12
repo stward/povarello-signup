@@ -50,7 +50,8 @@ class Admin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filter: null
+      filter: null,
+      currentYear: null
     }
   }
 
@@ -99,22 +100,60 @@ class Admin extends Component {
     if (this.state.filter) {
       filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
     }
-    return filteredPeople.map((person) => (
-      <Person key={person._id} id={person._id} person={person} />
-    ));
+    if (filteredPeople && filteredPeople.length > 0) {
+      return filteredPeople.map((person) => (
+        <Person key={person._id} id={person._id} person={person} />
+      ));
+    } else {
+      return (
+        <tr>
+          <td colSpan={9}><h2>No Results Found</h2></td>
+        </tr>
+      )
+    }
   }
 
-  nextMonthLoader = (event) => {
+  nextMonthLoader = (e) => {
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     var monthEndSelections = []
-    for (var i = event.target.value; i < months.length; i++) {
+    for (var i = e.target.value; i < months.length; i++) {
       monthEndSelections.push("<option value=" + i + ">" + months[i] + "</>")
     }
     $("#monthEndSelect").html(monthEndSelections)
   }
 
+  dateSelectLoader() {
+    function isDateInArray(person, yearArray) {
+      for (var i = 0; i < yearArray.length; i++) {
+        if (person.getFullYear() === yearArray[i]) {
+          return true;
+        }
+      }
+      return false;
+    }
+    var people = this.props.people
+    var uniqueYears = []
+    var yearSelect = []
+    for (var i = 0; i < people.length; i++) {
+      if (!isDateInArray(people[i].createdAt, uniqueYears)) {
+        uniqueYears.push(people[i].createdAt.getFullYear())
+        yearSelect.push("<option value=" + people[i].createdAt.getFullYear() + ">" + people[i].createdAt.getFullYear() + "</option>")
+      }
+    }
+    if (!this.state.currentYear) {
+      $("#yearSelect").html(yearSelect)
+    }
+  }
+
+  currentYearSetter = (e) => {
+    this.setState({currentYear: e.target.value})
+  }
+
   render() {
     if (Cookies.get('loggedIn')) {
+
+      this.dateSelectLoader()
+
       return (
         <div>
           <h1>New Registers</h1>
@@ -124,12 +163,7 @@ class Admin extends Component {
           <form onSubmit={this.showSelections.bind(this)} className="width25pct centerDiv">
             <div className="form-group">
               <label htmlFor="yearSelect">Year</label>
-              <select id="yearSelect" className="form-control" required>
-                <option value="">- Select -</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
+              <select id="yearSelect" className="form-control" required onChange={this.currentYearSetter}>
               </select>
             </div>
             <div className="form-group">

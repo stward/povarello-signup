@@ -49,3 +49,5 @@
 {"name":"Elna Thibodeau","createdAt":{"$date":"2017-06-15T00:00:00.000Z"},"firstMealYear":"yes","firstMealMonth":"yes","gender":"female","seniorChild":"senior","employed":"no","veteran":"yes","removed":false}
 {"name":"Fidelia Filice","createdAt":{"$date":"2017-05-10T00:00:00.000Z"},"firstMealYear":"no","firstMealMonth":"no","gender":"male","seniorChild":"senior","employed":"yes","veteran":"yes","removed":false}
 {"name":"Alyse Eakes","createdAt":{"$date":"2017-05-12T00:00:00.000Z"},"firstMealYear":"no","firstMealMonth":"yes","gender":"female","seniorChild":"adult","employed":"no","veteran":"no","removed":false}
+{"name":"Bob Jones","createdAt":{"$date":"2016-12-12T00:00:00.000Z"},"firstMealYear":"no","firstMealMonth":"yes","gender":"male","seniorChild":"adult","employed":"no","veteran":"no","removed":false}
+{"name":"Sarah Smith","createdAt":{"$date":"2016-12-13T00:00:00.000Z"},"firstMealYear":"no","firstMealMonth":"yes","gender":"female","seniorChild":"child","employed":"no","veteran":"no","removed":false}

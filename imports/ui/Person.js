@@ -1,5 +1,6 @@
 import {createContainer}  from 'meteor/react-meteor-data'
 import {People} from '../api/people.js'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import React, {Component, PropTypes} from 'react'
 
 

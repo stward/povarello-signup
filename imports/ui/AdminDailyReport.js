@@ -7,6 +7,7 @@ import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {People} from '../api/people.js'
+import AdminDailyPerson from './AdminDailyPerson.js';
 import $ from 'jquery'
 
 const convertArrayOfObjectsToCSV = (args) => {
@@ -45,14 +46,15 @@ class AdminDailyReport extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      today: moment()
+      today: moment(),
+      peopleData: null
     }
   }
 
   handleChange(date) {
     this.setState({
       today: date
-    });
+    })
   }
 
   logOutHandler() {
@@ -81,7 +83,8 @@ class AdminDailyReport extends Component {
     link.setAttribute('download', filename);
   }
 
-  renderPeople() {
+  renderPeople = () => {
+    let filteredPeople = this.props.people
     let today = this.state.today._d
     today.setHours(0,0,0,0)
     let tomorrow = new Date(this.state.today)
@@ -91,6 +94,7 @@ class AdminDailyReport extends Component {
       person.createdAt.setHours(0,0,0,0)
       return person.createdAt >= today && person.createdAt < tomorrow
     })
+
     let male = {total:0, senior:0, adult:0, child:0, employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
     , maleSenior = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
     , maleAdult = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
@@ -214,83 +218,9 @@ class AdminDailyReport extends Component {
       {"":"1st Meal This Year", Male:male.firstMealYear, Female:female.firstMealYear, "Male Senior":maleSenior.firstMealYear, "Female Senior":femaleSenior.firstMealYear, "Male Adult":maleAdult.firstMealYear, "Female Adult":femaleAdult.firstMealYear, "Male Child":maleChild.firstMealYear, "Female Child":femaleChild.firstMealYear},
       {"":"1st Meal This Month", Male:male.firstMealMonth, Female:female.firstMealMonth, "Male Senior":maleSenior.firstMealMonth, "Female Senior":femaleSenior.firstMealMonth, "Male Adult":maleAdult.firstMealMonth, "Female Adult":femaleAdult.firstMealMonth, "Male Child":maleChild.firstMealMonth, "Female Child":femaleChild.firstMealMonth}
     ]
-
+    this.state.peopleData = peopleData
     return (
-      <div id="table_wrapper">
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Male</th>
-              <th>Female</th>
-              <th>Male Senior</th>
-              <th>Female Senior</th>
-              <th>Male Adult</th>
-              <th>Female Adult</th>
-              <th>Male Child</th>
-              <th>Female Child</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Total</td>
-              <td>{male.total}</td>
-              <td>{female.total}</td>
-              <td>{male.senior}</td>
-              <td>{female.senior}</td>
-              <td>{male.adult}</td>
-              <td>{female.adult}</td>
-              <td>{male.child}</td>
-              <td>{female.child}</td>
-            </tr>
-            <tr>
-              <td>Employed</td>
-              <td>{male.employed}</td>
-              <td>{female.employed}</td>
-              <td>{maleSenior.employed}</td>
-              <td>{femaleSenior.employed}</td>
-              <td>{maleAdult.employed}</td>
-              <td>{femaleAdult.employed}</td>
-              <td>--</td>
-              <td>--</td>
-            </tr>
-            <tr>
-              <td>Veteran</td>
-              <td>{male.veteran}</td>
-              <td>{female.veteran}</td>
-              <td>{maleSenior.veteran}</td>
-              <td>{femaleSenior.veteran}</td>
-              <td>{maleAdult.veteran}</td>
-              <td>{femaleAdult.veteran}</td>
-              <td>--</td>
-              <td>--</td>
-            </tr>
-            <tr>
-              <td>1st Meal This Year</td>
-              <td>{male.firstMealYear}</td>
-              <td>{female.firstMealYear}</td>
-              <td>{maleSenior.firstMealYear}</td>
-              <td>{femaleSenior.firstMealYear}</td>
-              <td>{maleAdult.firstMealYear}</td>
-              <td>{femaleAdult.firstMealYear}</td>
-              <td>{maleChild.firstMealYear}</td>
-              <td>{femaleChild.firstMealYear}</td>
-            </tr>
-            <tr>
-              <td>1st Meal This Month</td>
-              <td>{male.firstMealMonth}</td>
-              <td>{female.firstMealMonth}</td>
-              <td>{maleSenior.firstMealMonth}</td>
-              <td>{femaleSenior.firstMealMonth}</td>
-              <td>{maleAdult.firstMealMonth}</td>
-              <td>{femaleAdult.firstMealMonth}</td>
-              <td>{maleChild.firstMealMonth}</td>
-              <td>{femaleChild.firstMealMonth}</td>
-            </tr>
-          </tbody>
-        </table>
-        <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: peopleData, filename: "Poverello Daily Report - " + this.state.today + ".csv" })}>Export</a>
-      </div>
+      <AdminDailyPerson key={p._id} people={peopleData} />
     )
   }
 
@@ -307,7 +237,25 @@ class AdminDailyReport extends Component {
           <a href="/admin" className="btn btn-primary" role="button">Current List</a>
           <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
-          {this.renderPeople()}
+          <div id="table_wrapper">
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Male</th>
+                  <th>Female</th>
+                  <th>Male Senior</th>
+                  <th>Female Senior</th>
+                  <th>Male Adult</th>
+                  <th>Female Adult</th>
+                  <th>Male Child</th>
+                  <th>Female Child</th>
+                </tr>
+              </thead>
+              {this.renderPeople()}
+            </table>
+            <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: this.state.peopleData, filename: "Poverello Daily Report - " + this.state.today + ".csv" })}>Export</a>
+          </div>
         </div>
       )
     } else {

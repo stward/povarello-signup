@@ -101,10 +101,12 @@ class Admin extends Component {
       filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
     }
     if (filteredPeople && filteredPeople.length > 0) {
+      $("#download").show()
       return filteredPeople.map((person) => (
         <Person key={person._id} id={person._id} person={person} />
-      ));
+      ))
     } else {
+      $("#download").hide()
       return (
         <tr>
           <td colSpan={9}><h2>No Results Found</h2></td>

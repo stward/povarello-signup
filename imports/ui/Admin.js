@@ -20,7 +20,6 @@ const convertArrayOfObjectsToCSV = (args) => {
   }
 
   data = data.filter(function(d) {
-    d.archived = d.removed
     delete d._id
     delete d.removed
     return data
@@ -53,7 +52,6 @@ class Admin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filter: null,
       startDate: moment().subtract(1,'months'),
       endDate: moment()
     }
@@ -86,12 +84,16 @@ class Admin extends Component {
   downloadCSV(args) {
     var data, filename, link
 
-    let filteredPeople = this.props.people
-    if (this.state.filter) {
-      filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
+    let p = this.props.people
+    if (this.state.startDate) {
+      let start = this.state.startDate
+      let end = this.state.endDate
+      p = p.filter(function(person) {
+        return person.createdAt >= start && person.createdAt <= end
+      })
     }
     var csv = convertArrayOfObjectsToCSV({
-      data: filteredPeople
+      data: p
     })
     if (csv == null) return;
 
@@ -105,11 +107,6 @@ class Admin extends Component {
     link = document.getElementById('download');
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
-  }
-
-  showSelections = (e) => {
-    e.preventDefault()
-    this.setState({filter: [this.state.startDate, this.state.endDate]})
   }
 
   renderPeople() {

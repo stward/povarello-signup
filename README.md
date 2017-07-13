@@ -1,4 +1,6 @@
-___Poverello Sign-in App___
+# Poverello Sign-in App
+
+This is an app that will run on tablets at the Poverello homeless center for people to sign in with. The current system is a mess of paper, and isn't super efficient, so this will help streamline their process.
 
 If you don't have Meteor:
 `curl https://install.meteor.com/ | sh`
@@ -12,15 +14,17 @@ in the project:
 
 -`yarn start`
 
-go to localhost:300 to see it.
+go to localhost:300 to see it. the /admin password is hotdogs, but you can change the variable in `/Password` to whatever you please.
 
-This is an app that will run on tablets at the Poverello homeless center for people to sign in with. The current system is a mess of paper, and isn't super efficient, so this will help streamline their process.
+__The admin side__ of the project is a list of all the entries, sorted by date. There is an overall display, and then a daily display you can use. Each of these can be exported as CSV files. To get here, you have to manually go to the /admin address. The current password is hotdogs.
 
-The basics:
-
-The public side of the program will be simple question pages: A block with the Poverello logo and simple instructions, then the question in the middle of the page, and then the relevant answer buttons below. A back button is below all that, in case the user messes up.
+__The public side__ of the program is simple question pages: A block with the Poverello logo and simple instructions, then the question in the middle of the page, and then the relevant answer buttons below. A back button is below all that, in case the user messes up.
 
 Since the app is running on a tablet, the buttons should be large and easy to press. The users are also going to be homeless and sometimes disabled, so the UI should remain super simple.
+
+-A splash page with a big ol' start button.
+
+-What is your name?
 
 -What is your gender? (M/F)
 
@@ -34,6 +38,4 @@ Since the app is running on a tablet, the buttons should be large and easy to pr
 
 -Are you a veteran? (Y/N)
 
-(a review page is a possibility at the end here. "look at your info, make sure you got everything right")
-
-The app will then need some sort of interface to view all the data collected.
+-A review page with links to each question in case they want to go back and change an answer. If they do go back like this, they'll be taken back to the review page instead of the next question when they select something.

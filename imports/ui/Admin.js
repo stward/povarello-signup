@@ -4,7 +4,10 @@ import React, {Component, PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {People} from '../api/people.js'
-import Person from './Person.js';
+import Person from './Person.js'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import 'react-datepicker/dist/react-datepicker.css'
 import $ from 'jquery'
 
 const convertArrayOfObjectsToCSV = (args) => {
@@ -51,8 +54,21 @@ class Admin extends Component {
     super(props)
     this.state = {
       filter: null,
-      currentYear: null
+      startDate: null,
+      endDate: null
     }
+  }
+
+  handleStartChange(date) {
+    this.setState({
+      startDate: date
+    })
+  }
+
+  handleEndChange(date) {
+    this.setState({
+      endDate: date
+    })
   }
 
   logOutHandler() {
@@ -87,12 +103,7 @@ class Admin extends Component {
 
   showSelections = (e) => {
     e.preventDefault()
-    var year = ($("#yearSelect").val())
-    , startMonth = ($("#monthStartSelect").val())
-    , endMonth = ($("#monthEndSelect").val())
-    , startDate = new Date(year, startMonth, 1)
-    , endDate = new Date(year, endMonth, 31)
-    this.setState({filter: [startDate, endDate]})
+    this.setState({filter: [this.state.startDate, this.state.endDate]})
   }
 
   renderPeople() {
@@ -115,46 +126,8 @@ class Admin extends Component {
     }
   }
 
-  nextMonthLoader = (e) => {
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    var monthEndSelections = []
-    for (var i = e.target.value; i < months.length; i++) {
-      monthEndSelections.push("<option value=" + i + ">" + months[i] + "</>")
-    }
-    $("#monthEndSelect").html(monthEndSelections)
-  }
-
-  dateSelectLoader() {
-    function isDateInArray(person, yearArray) {
-      for (var i = 0; i < yearArray.length; i++) {
-        if (person.getFullYear() === yearArray[i]) {
-          return true;
-        }
-      }
-      return false;
-    }
-    var people = this.props.people
-    var uniqueYears = []
-    var yearSelect = []
-    for (var i = 0; i < people.length; i++) {
-      if (!isDateInArray(people[i].createdAt, uniqueYears)) {
-        uniqueYears.push(people[i].createdAt.getFullYear())
-        yearSelect.push("<option value=" + people[i].createdAt.getFullYear() + ">" + people[i].createdAt.getFullYear() + "</option>")
-      }
-    }
-    if (!this.state.currentYear) {
-      $("#yearSelect").html(yearSelect)
-    }
-  }
-
-  currentYearSetter = (e) => {
-    this.setState({currentYear: e.target.value})
-  }
-
   render() {
     if (Cookies.get('loggedIn')) {
-
-      this.dateSelectLoader()
 
       return (
         <div>
@@ -164,45 +137,18 @@ class Admin extends Component {
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
           <form onSubmit={this.showSelections.bind(this)} className="width25pct centerDiv">
             <div className="form-group">
-              <label htmlFor="yearSelect">Year</label>
-              <select id="yearSelect" className="form-control" required onChange={this.currentYearSetter}>
-              </select>
+              <label htmlFor="monthStartSelect">Start Date</label>
+              <DatePicker id="monthStartSelect" className="datePicker" required
+                selected={this.state.startDate}
+                onChange={this.handleStartChange.bind(this)}
+              />
             </div>
             <div className="form-group">
-              <label htmlFor="monthStartSelect">Starting Month</label>
-              <select id="monthStartSelect" className="form-control" required onChange={this.nextMonthLoader}>
-                <option value="">- Select -</option>
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="monthEndSelect">Ending Month</label>
-              <select id="monthEndSelect" className="form-control" required>
-              <option value="">- Select -</option>
-              <option value="0">January</option>
-              <option value="1">February</option>
-              <option value="2">March</option>
-              <option value="3">April</option>
-              <option value="4">May</option>
-              <option value="5">June</option>
-              <option value="6">July</option>
-              <option value="7">August</option>
-              <option value="8">September</option>
-              <option value="9">October</option>
-              <option value="10">November</option>
-              <option value="11">December</option>
-              </select>
+              <label htmlFor="monthEndSelect">End Date</label>
+              <DatePicker id="monthEndSelect" className="datePicker" required
+                selected={this.state.endDate}
+                onChange={this.handleEndChange.bind(this)}
+              />
             </div>
             <button type="submit" id="searchResults" className="btn btn-default">Submit</button>
           </form>

@@ -54,7 +54,7 @@ class Admin extends Component {
     super(props)
     this.state = {
       filter: null,
-      startDate: null,
+      startDate: moment().subtract(1,'months'),
       endDate: moment()
     }
   }
@@ -73,7 +73,7 @@ class Admin extends Component {
 
   resetDates() {
     this.setState({
-      startDate: null,
+      startDate: moment().subtract(1,'months'),
       endDate: moment()
     })
   }
@@ -175,7 +175,7 @@ class Admin extends Component {
               {this.renderPeople()}
             </tbody>
           </table>
-          <a id="download" className="btn btn-lg btn-primary" onClick={this.downloadCSV({ filename: "people-data.csv" })}>Export</a>
+          <a id="download" className="btn btn-lg btn-primary" onClick={this.downloadCSV({ filename: "Poverello-Registers.csv" })}>Export</a>
         </div>
       )
     } else {

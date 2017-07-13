@@ -47,7 +47,7 @@ class AdminDailyReport extends Component {
     super(props)
     this.state = {
       peopleData: null,
-      startDate: moment(),
+      startDate: moment().subtract(1,'d'),
       endDate: moment()
     }
   }
@@ -66,7 +66,7 @@ class AdminDailyReport extends Component {
 
   resetDates() {
     this.setState({
-      startDate: moment(),
+      startDate: moment().subtract(1,'d'),
       endDate: moment()
     })
   }
@@ -212,7 +212,25 @@ class AdminDailyReport extends Component {
         {"":"1st Meal This Year", Male:male.firstMealYear, Female:female.firstMealYear, "Male Senior":maleSenior.firstMealYear, "Female Senior":femaleSenior.firstMealYear, "Male Adult":maleAdult.firstMealYear, "Female Adult":femaleAdult.firstMealYear, "Male Child":maleChild.firstMealYear, "Female Child":femaleChild.firstMealYear},
         {"":"1st Meal This Month", Male:male.firstMealMonth, Female:female.firstMealMonth, "Male Senior":maleSenior.firstMealMonth, "Female Senior":femaleSenior.firstMealMonth, "Male Adult":maleAdult.firstMealMonth, "Female Adult":femaleAdult.firstMealMonth, "Male Child":maleChild.firstMealMonth, "Female Child":femaleChild.firstMealMonth}
       ]
-      peopleArray.push(peopleData)
+
+      if(p[i-1] && p[i].createdAt.toDateString() === p[i-1].createdAt.toDateString()) {
+        var pa = peopleArray[peopleArray.length - 1]
+        var pd = peopleData
+        for (var i = 1; i < pa.length; i++) {
+          pa[i].Male += pd[i].Male
+          pa[i].Female += pd[i].Female
+          pa[i]["Male Senior"] += pd[i]["Male Senior"]
+          pa[i]["Female Senior"] += pd[i]["Female Senior"]
+          pa[i]["Male Adult"] += pd[i]["Male Adult"]
+          pa[i]["Female Adult"] += pd[i]["Female Adult"]
+          if (i !== 2 && i !== 3) {
+            pa[i]["Male Child"] += pd[i]["Male Child"]
+            pa[i]["Female Child"] += pd[i]["Female Child"]
+          }
+        }
+      } else {
+        peopleArray.push(peopleData)
+      }
     }
 
     var csv = convertArrayOfObjectsToCSV({
@@ -244,7 +262,6 @@ class AdminDailyReport extends Component {
     let peopleArray = []
 
     for (i in p) {
-
       let male = {total:0, senior:0, adult:0, child:0, employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
       , maleSenior = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
       , maleAdult = {employed:0, veteran:0, firstMealYear:0, firstMealMonth:0}
@@ -366,7 +383,25 @@ class AdminDailyReport extends Component {
         {"":"1st Meal This Year", Male:male.firstMealYear, Female:female.firstMealYear, "Male Senior":maleSenior.firstMealYear, "Female Senior":femaleSenior.firstMealYear, "Male Adult":maleAdult.firstMealYear, "Female Adult":femaleAdult.firstMealYear, "Male Child":maleChild.firstMealYear, "Female Child":femaleChild.firstMealYear},
         {"":"1st Meal This Month", Male:male.firstMealMonth, Female:female.firstMealMonth, "Male Senior":maleSenior.firstMealMonth, "Female Senior":femaleSenior.firstMealMonth, "Male Adult":maleAdult.firstMealMonth, "Female Adult":femaleAdult.firstMealMonth, "Male Child":maleChild.firstMealMonth, "Female Child":femaleChild.firstMealMonth}
       ]
-      peopleArray.push(peopleData)
+
+      if(p[i-1] && p[i].createdAt.toDateString() === p[i-1].createdAt.toDateString()) {
+        var pa = peopleArray[peopleArray.length - 1]
+        var pd = peopleData
+        for (var i = 1; i < pa.length; i++) {
+          pa[i].Male += pd[i].Male
+          pa[i].Female += pd[i].Female
+          pa[i]["Male Senior"] += pd[i]["Male Senior"]
+          pa[i]["Female Senior"] += pd[i]["Female Senior"]
+          pa[i]["Male Adult"] += pd[i]["Male Adult"]
+          pa[i]["Female Adult"] += pd[i]["Female Adult"]
+          if (i !== 2 && i !== 3) {
+            pa[i]["Male Child"] += pd[i]["Male Child"]
+            pa[i]["Female Child"] += pd[i]["Female Child"]
+          }
+        }
+      } else {
+        peopleArray.push(peopleData)
+      }
     }
 
     if (peopleArray.length > 0) {
@@ -402,7 +437,7 @@ class AdminDailyReport extends Component {
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
           <div id="table_wrapper">
             {this.renderPeople()}
-            <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: this.state.peopleData, filename: "Poverello Daily Report - " + this.state.startDate.toDateString() + " - " + this.state.endDate.toDateString() + ".csv" })}>Export</a>
+            <a id="download" className="btn btn-lg btn-primary" onClick={() => this.downloadCSV({ data: this.state.peopleData, filename: "Poverello Daily Report.csv" })}>Export</a>
           </div>
         </div>
       )

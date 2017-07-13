@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 const style = {
+  display: 'flex',
   margin: 40,
   fontSize: 90,
   padding: 80,

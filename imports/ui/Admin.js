@@ -26,27 +26,27 @@ const convertArrayOfObjectsToCSV = (args) => {
     return data
   })
 
-  columnDelimiter = args.columnDelimiter || ',';
-  lineDelimiter = args.lineDelimiter || '\n';
+  columnDelimiter = args.columnDelimiter || ','
+  lineDelimiter = args.lineDelimiter || '\n'
 
-  keys = Object.keys(data[0]);
+  keys = Object.keys(data[0])
 
-  result = '';
-  result += keys.join(columnDelimiter);
-  result += lineDelimiter;
+  result = ''
+  result += keys.join(columnDelimiter)
+  result += lineDelimiter
 
   data.forEach(function(item) {
     ctr = 0;
     keys.forEach(function(key) {
-      if (ctr > 0) result += columnDelimiter;
+      if (ctr > 0) result += columnDelimiter
 
-      result += item[key];
-      ctr++;
-    });
-    result += lineDelimiter;
-  });
+      result += item[key]
+      ctr++
+    })
+    result += lineDelimiter
+  })
 
-  return result;
+  return result
 }
 
 class Admin extends Component {
@@ -55,7 +55,7 @@ class Admin extends Component {
     this.state = {
       filter: null,
       startDate: null,
-      endDate: null
+      endDate: moment()
     }
   }
 
@@ -71,6 +71,13 @@ class Admin extends Component {
     })
   }
 
+  resetDates() {
+    this.setState({
+      startDate: null,
+      endDate: moment()
+    })
+  }
+
   logOutHandler() {
     Cookies.remove("loggedIn")
     window.location.href = "/"
@@ -83,7 +90,6 @@ class Admin extends Component {
     if (this.state.filter) {
       filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
     }
-
     var csv = convertArrayOfObjectsToCSV({
       data: filteredPeople
     })
@@ -107,13 +113,17 @@ class Admin extends Component {
   }
 
   renderPeople() {
-    let filteredPeople = this.props.people
-    if (this.state.filter) {
-      filteredPeople = filteredPeople.filter(people => (people.createdAt > this.state.filter[0]) && (people.createdAt < this.state.filter[1]))
+    let p = this.props.people
+    if (this.state.startDate) {
+      let start = this.state.startDate
+      let end = this.state.endDate
+      p = p.filter(function(person) {
+        return person.createdAt >= start && person.createdAt <= end
+      })
     }
-    if (filteredPeople && filteredPeople.length > 0) {
+    if (p && p.length > 0) {
       $("#download").show()
-      return filteredPeople.map((person) => (
+      return p.map((person) => (
         <Person key={person._id} id={person._id} person={person} />
       ))
     } else {
@@ -131,27 +141,22 @@ class Admin extends Component {
 
       return (
         <div>
-          <h1>New Registers</h1>
-          <a href="/adminDailyReport" className="btn btn-primary" role="button">Daily Report</a>
+          <h1>Registers</h1>
+          <label htmlFor="monthStartSelect">Start Date</label>
+          <DatePicker id="monthStartSelect" className="datePicker" required
+            selected={this.state.startDate}
+            onChange={this.handleStartChange.bind(this)}
+          />
+          <label htmlFor="monthEndSelect">End Date</label>
+          <DatePicker id="monthEndSelect" className="datePicker" required
+            selected={this.state.endDate}
+            onChange={this.handleEndChange.bind(this)}
+          />
+          <div className="height15px"></div>
+          <button className="btn btn-primary" onClick={() => this.resetDates()}>Reset</button>
+          <a href="/adminDailyReport" className="btn btn-primary marginLeftBtn" role="button">Daily Report</a>
           <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
-          <form onSubmit={this.showSelections.bind(this)} className="width25pct centerDiv">
-            <div className="form-group">
-              <label htmlFor="monthStartSelect">Start Date</label>
-              <DatePicker id="monthStartSelect" className="datePicker" required
-                selected={this.state.startDate}
-                onChange={this.handleStartChange.bind(this)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="monthEndSelect">End Date</label>
-              <DatePicker id="monthEndSelect" className="datePicker" required
-                selected={this.state.endDate}
-                onChange={this.handleEndChange.bind(this)}
-              />
-            </div>
-            <button type="submit" id="searchResults" className="btn btn-default">Submit</button>
-          </form>
           <table className="table table-bordered">
             <thead>
               <tr>

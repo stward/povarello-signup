@@ -155,7 +155,7 @@ class Admin extends Component {
           <div className="height15px"></div>
           <button className="btn btn-primary" onClick={() => this.resetDates()}>Reset</button>
           <a href="/adminDailyReport" className="btn btn-primary marginLeftBtn" role="button">Daily Report</a>
-          <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
+          {/* <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a> */}
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
           <table className="table table-bordered">
             <thead>
@@ -168,7 +168,7 @@ class Admin extends Component {
                 <th>Age Group</th>
                 <th>Employed</th>
                 <th>Veteran</th>
-                <th>Move To Archive</th>
+                {/* <th>Move To Archive</th> */}
               </tr>
             </thead>
             <tbody>

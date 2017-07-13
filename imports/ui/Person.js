@@ -23,11 +23,13 @@ export default class Person extends Component {
         <td>{this.props.person.seniorChild}</td>
         <td>{this.props.person.employed}</td>
         <td>{this.props.person.veteran}</td>
-        <td>
-          <button type="button" className="btn btn-default" onClick={this.deleteHandler.bind(this)}>
-            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          </button>
-        </td>
+        {/*
+          <td>
+            <button type="button" className="btn btn-default" onClick={this.deleteHandler.bind(this)}>
+              <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+          </td>
+        */}
       </tr>
     )
   }

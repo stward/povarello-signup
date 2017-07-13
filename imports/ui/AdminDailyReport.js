@@ -433,7 +433,7 @@ class AdminDailyReport extends Component {
           <div className="height15px"></div>
           <button className="btn btn-primary" onClick={() => this.resetDates()}>Reset</button>
           <a href="/admin" className="btn btn-primary marginLeftBtn" role="button">Current List</a>
-          <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a>
+          {/* <a href="/adminArchive" className="btn btn-primary marginLeftBtn" role="button">Archive</a> */}
           <button className="btn btn-danger marginLeftBtn" onClick={() => this.logOutHandler()}>Log Out</button>
           <div id="table_wrapper">
             {this.renderPeople()}

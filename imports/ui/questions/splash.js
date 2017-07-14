@@ -12,6 +12,8 @@ const style = {
   color: 'black'
 }
 
+//the "home" page. Clicking the logo brings you here.
+
 const Splash = (props) =>
   <div>
     <h1 className="welcome-label">Welcome to the Poverello Center</h1>

@@ -3,6 +3,8 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
+//This page displays after you hit submit. After a few seconds it takes you back to the splash.
+
 class ThankYou extends Component {
   render() {
     return (

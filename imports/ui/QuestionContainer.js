@@ -9,6 +9,7 @@ import Question7 from './questions/question7Veteran'
 import Review from './questions/review'
 import {People} from '../api/people.js';
 
+//Each of the main endpoints can be referenced by number from here.
 const questions = {
   '1': Question1,
   '2': Question2,
@@ -20,6 +21,7 @@ const questions = {
   '8': Review
 }
 
+//The default values for all the questions.
 class QuestionContainer extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,7 @@ class QuestionContainer extends Component {
       this.setState({editingQuestion: true})
     }
 
+//submits all your answers to the database, then throws you to the thank you page.
   handleSubmit() {
     People.insert({
       createdAt: new Date(),

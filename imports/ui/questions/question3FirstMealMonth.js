@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import QuestionButtonStyle from '../QuestionButtonStyle'
 import NextButtonStyle from '../NextButtonStyle'
 
+//this question is skipped if the user answers yes to "first meal this year".
+
 const Question3 = (props) =>
   <div className="row">
     <h1>Is this your first meal here this month?</h1>

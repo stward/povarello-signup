@@ -39,3 +39,5 @@ Since the app is running on a tablet, the buttons should be large and easy to pr
 -Are you a veteran? (Y/N)
 
 -A review page with links to each question in case they want to go back and change an answer. If they do go back like this, they'll be taken back to the review page instead of the next question when they select something.
+
+Note: there is functionality in place for an Archive section. Registrants can be moved to this archive at the click of a button, which sets a flag in the database record. However, this early feature now seems extraneous at this point in the build, so it has been commented out of the app.

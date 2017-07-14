@@ -265,7 +265,7 @@ class AdminDailyReport extends Component {
 
   /*
     this function gets an array of people from the database, and then loops through it to create
-    a tally of the number of people in each category, per day. it starts by filtering the list of
+    a tally of the number of entries in each category, per day. it starts by filtering the list of
     people by date and creating an empty array container. each person has their attributes added
     up, and then compiled in an array called peopleData. finally, a check is made to see if the
     current person was registered on the same date as the previous. if so, the data of the current

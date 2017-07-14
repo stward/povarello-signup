@@ -22,24 +22,32 @@ __The public side__ of the program is simple question pages: A block with the Po
 
 Since the app is running on a tablet, the buttons should be large and easy to press. The users are also going to be homeless and sometimes disabled, so the UI should remain super simple.
 
--A splash page with a big ol' start button.
+- A splash page with a big ol' start button.
 
--What is your name?
+- What is your name?
 
--What is your gender? (M/F)
+- What is your gender? (M/F)
 
--Is this your first meal here this year? (Y/N)
+- Is this your first meal here this year? (Y/N)
 
--Is this your first meal here this month? (skip if they answered no to the previous question)
+- Is this your first meal here this month? (skip if they answered no to the previous question)
 
--What age category do you fall under? (under 18, 18 to 54, 55+)
+- What age category do you fall under? (under 18, 18 to 54, 55+)
 
--Are you currently employed? (Y/N)
+- Are you currently employed? (Y/N)
 
--Are you a veteran? (Y/N)
+- Are you a veteran? (Y/N)
 
--A review page with links to each question in case they want to go back and change an answer. If they do go back like this, they'll be taken back to the review page instead of the next question when they select something.
+- A review page with links to each question in case they want to go back and change an answer. If they do go back like this, they'll be taken back to the review page instead of the next question when they select something.
 
--A "thank you" that displays after you hit submit. After a few seconds, you are returned to the splash page.
+- A "thank you" that displays after you hit submit. After a few seconds, you are returned to the splash page.
+
+__What's not done__
+
+- Scaling doesn't work perfectly for all resolutions, but it works fine for an ipad's resolution, which is the priority. Still, if it smoothly fit any screen, that would be optimal.
+
+- Actual user integration. Right now we're just using a very simple password script.
+
+- Depending on what the good people at Poverello want, the styling on the app might need to be changed. That part's in the air.
 
 Note: there is functionality in place for an Archive section. Registrants can be moved to this archive at the click of a button, which sets a flag in the database record. However, this early feature now seems extraneous at this point in the build, so it has been commented out of the app.

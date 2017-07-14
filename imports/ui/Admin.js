@@ -10,6 +10,8 @@ import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 import $ from 'jquery'
 
+// function to convert data passed from downloadCSV() to proper csv format
+
 const convertArrayOfObjectsToCSV = (args) => {
   var result, ctr, keys, columnDelimiter, lineDelimiter, data;
 
@@ -49,6 +51,9 @@ const convertArrayOfObjectsToCSV = (args) => {
 }
 
 class Admin extends Component {
+
+  // use moment.js to easily create and modify dates
+
   constructor(props) {
     super(props)
     this.state = {
@@ -56,6 +61,8 @@ class Admin extends Component {
       endDate: moment()
     }
   }
+
+  // change dates used in datepicker fields
 
   handleStartChange(date) {
     this.setState({
@@ -69,6 +76,8 @@ class Admin extends Component {
     })
   }
 
+  // reset dates to initial state
+
   resetDates() {
     this.setState({
       startDate: moment().subtract(1,'months'),
@@ -80,6 +89,8 @@ class Admin extends Component {
     Cookies.remove("loggedIn")
     window.location.href = "/"
   }
+
+  // function to create a csv report of people filtered by date
 
   downloadCSV(args) {
     var data, filename, link

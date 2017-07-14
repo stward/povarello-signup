@@ -10,6 +10,8 @@ import {People} from '../api/people.js'
 import AdminDailyPerson from './AdminDailyPerson.js';
 import $ from 'jquery'
 
+// function to convert data passed from downloadCSV() to proper csv format
+
 const convertArrayOfObjectsToCSV = (args) => {
   var result, ctr, columnDelimiter, lineDelimiter, data
 
@@ -43,6 +45,9 @@ const convertArrayOfObjectsToCSV = (args) => {
 }
 
 class AdminDailyReport extends Component {
+
+  // use moment.js to easily create and modify dates
+
   constructor(props) {
     super(props)
     this.state = {
@@ -51,6 +56,8 @@ class AdminDailyReport extends Component {
       endDate: moment()
     }
   }
+
+  // change dates used in datepicker fields
 
   handleStartChange(date) {
     this.setState({
@@ -64,6 +71,8 @@ class AdminDailyReport extends Component {
     })
   }
 
+  // reset dates to initial state
+
   resetDates() {
     this.setState({
       startDate: moment().subtract(1,'d'),
@@ -75,6 +84,9 @@ class AdminDailyReport extends Component {
     Cookies.remove("loggedIn")
     window.location.href = "/"
   }
+
+  // function to create a csv report of people filtered by date. this bit is a little confusing.
+  // please refer to the comments above the renderPeople function for more information.
 
   downloadCSV(args) {
     var data, filename, link;
@@ -250,6 +262,19 @@ class AdminDailyReport extends Component {
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
   }
+
+  /*
+    this function gets an array of people from the database, and then loops through it to create
+    a tally of the number of people in each category, per day. it starts by filtering the list of
+    people by date and creating an empty array container. each person has their attributes added
+    up, and then compiled in an array called peopleData. finally, a check is made to see if the
+    current person was registered on the same date as the previous. if so, the data of the current
+    person and the previous are combined into a single date, otherwise the person is pushed to
+    the container array as a new entry.
+
+    i was unable to figure out how to use the information created by this function elsewhere in
+    this app, which is why this giant block of code is duplicated above in the downloadCSV function.
+  */
 
   renderPeople = () => {
     let start = this.state.startDate

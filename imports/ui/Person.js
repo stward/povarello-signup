@@ -6,11 +6,15 @@ import React, {Component, PropTypes} from 'react'
 
 export default class Person extends Component {
 
-  deleteHandler() {
-    People.update(this.props.id, {
-      $set: {removed: true}
-    })
-  }
+  /*
+    function to move people to archives
+
+    deleteHandler() {
+      People.update(this.props.id, {
+        $set: {removed: true}
+      })
+    }
+  */
 
   render() {
     return (

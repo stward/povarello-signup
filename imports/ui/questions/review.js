@@ -2,6 +2,11 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import NextButtonStyle from '../NextButtonStyle'
 
+//the review page. Each result has an edit button that takes the user back to that page.
+//when you go back to a page like this, the buttons on that page will take you back here
+//instead of to the next question like normal.
+//If the answer is empty, the text will be red; if it's not empty, green.
+
 const Review = (props) => {
 return (
   <div className="review-row">

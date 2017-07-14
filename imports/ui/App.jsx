@@ -25,6 +25,7 @@ import AdminDailyReport from './AdminDailyReport'
 import Passwordpage from './Password'
 import ThankYou from './ThankYou'
 
+//The cookie for the password. If it exists, the password endpoint is skipped.
 class App extends Component {
   render() {
     if (Cookies.get('loggedIn')) {

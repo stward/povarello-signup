@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import NextButtonStyle from '../NextButtonStyle'
-import QuestionsFlex from '../QuestionsFlex'
 
 const nextStyle = {
   display: 'flex',
@@ -15,21 +14,18 @@ const nextStyle = {
   width: '30%'
 }
 
-const NameQuestionFlex = {
-  display: 'flex',
-  justifyContent: 'space-around',
-  flexDirection: 'column'
-}
-
 const textInput = {
   display: 'flex',
   textAlign: 'center'
 }
 
+//all these question pages are fairly simple, just react chunks that are each page.
+//they all render in app.jsx.
+
 const Question1 = (props) =>{
 console.log(props)
 return (
-  <div style={NameQuestionFlex}>
+  <div>
     <div className="row">
       <h1 className="welcome-label">Please enter your name</h1>
       <div className="question-button-group">

@@ -11,6 +11,11 @@ const style = {
   color: 'black'
 }
 
+//Simple basic password script. Not very secure, but it gets the job done. No users, just a password check.
+//The input is checked against the value, and if it matches, you go to /admin.
+//A cookie is created that remembers if the user is "logged in" until the log out button is clicked.
+//It would probably be good to replace it with something better eventually. Probably Passport.js?
+
 function validatePass(e){
   e.preventDefault()
   if(document.getElementById('password').value === 'hotdogs'){

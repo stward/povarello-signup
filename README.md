@@ -14,7 +14,7 @@ in the project:
 
 -`yarn start`
 
-go to localhost:300 to see it. the /admin password is hotdogs, but you can change the variable in `/Password` to whatever you please.
+go to localhost:3000 to see it. the /admin password is hotdogs, but you can change the variable in `/Password` to whatever you please.
 
 __The admin side__ of the project is a list of all the entries, sorted by date. There is an overall display, and then a daily display you can use. Each of these can be exported as CSV files. To get here, you have to manually go to the /admin address. The current password is hotdogs.
 
